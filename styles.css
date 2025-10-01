@@ -1,4 +1,11 @@
-/* Message Generator Styles */
+/* ===================================================================================
+   📌 Message Generator Stylesheet
+   Author: [Your Name]
+   Description: Styles for the Message Generator web app, including input, output,
+   WhatsApp integration, bot configuration, and debugging UI.
+   =================================================================================== */
+
+/* ------------------------------     Global Reset & Base Styles    ------------------------------ */
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +21,7 @@ body {
     padding: 20px;
 }
 
+/* ------------------------------     Main Container     ------------------------------ */
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -24,11 +32,13 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Fade-in animation for smooth page load */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* ------------------------------    Headings & Text    ------------------------------ */
 h1 {
     text-align: center;
     color: #4a5568;
@@ -43,6 +53,7 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* ------------------------------     Input Section (Prompt + Button)    ------------------------------ */
 .input-section {
     margin-bottom: 30px;
 }
@@ -54,6 +65,7 @@ label {
     color: #4a5568;
 }
 
+/* Text input styles */
 input[type="text"] {
     width: 100%;
     padding: 12px 16px;
@@ -70,6 +82,7 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* ------------------------------     Buttons     ------------------------------ */
 button {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -91,12 +104,14 @@ button:active {
     transform: translateY(0);
 }
 
+/* Main generate button */
 #generate-btn {
     width: 100%;
     font-size: 1.1em;
     padding: 15px;
 }
 
+/* ------------------------------     Output Section (Generated Message)     ------------------------------ */
 .output-section {
     background: #f7fafc;
     border-radius: 12px;
@@ -110,6 +125,7 @@ button:active {
     margin-bottom: 15px;
 }
 
+/* Display generated text */
 .message-display {
     background: white;
     border: 1px solid #e2e8f0;
@@ -122,6 +138,7 @@ button:active {
     white-space: pre-wrap;
 }
 
+/* Editable text area */
 textarea {
     width: 100%;
     padding: 12px 16px;
@@ -140,6 +157,7 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* ------------------------------     WhatsApp Section     ------------------------------ */
 .whatsapp-section {
     margin: 20px 0;
     padding: 15px;
@@ -159,8 +177,6 @@ input[type="tel"] {
     padding: 12px 16px;
     border: 2px solid #d1fae5;
     border-radius: 8px;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
     margin-bottom: 5px;
 }
 
@@ -175,9 +191,9 @@ input[type="tel"]:focus {
     font-size: 0.85em;
     font-style: italic;
     display: block;
-    margin-bottom: 10px;
 }
 
+/* ------------------------------     Action Buttons (Copy, WhatsApp, Regenerate)    ------------------------------ */
 .action-buttons {
     display: flex;
     gap: 10px;
@@ -189,29 +205,10 @@ input[type="tel"]:focus {
     min-width: 150px;
 }
 
-#copy-btn {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-}
-
-#copy-btn:hover {
-    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
-}
-
-#regenerate-btn {
-    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
-}
-
-#regenerate-btn:hover {
-    box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
-}
-
-#whatsapp-btn {
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-}
-
-#whatsapp-btn:hover {
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-}
+/* Specific button colors */
+#copy-btn { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); }
+#regenerate-btn { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); }
+#whatsapp-btn { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
 
 #whatsapp-btn:disabled {
     background: #9ca3af;
@@ -220,10 +217,7 @@ input[type="tel"]:focus {
     box-shadow: none;
 }
 
-.examples-section {
-    margin-bottom: 30px;
-}
-
+/* ------------------------------    Example Prompts Section    ------------------------------ */
 .examples-section h3 {
     color: #4a5568;
     margin-bottom: 15px;
@@ -240,19 +234,17 @@ input[type="tel"]:focus {
     color: #4a5568;
     padding: 8px 16px;
     border-radius: 20px;
-    font-size: 0.9em;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid #e2e8f0;
 }
 
 .example-tag:hover {
     background: #667eea;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
 }
 
+/* ------------------------------    Footer Section    ------------------------------ */
 .footer {
     text-align: center;
     color: #718096;
@@ -261,43 +253,7 @@ input[type="tel"]:focus {
     border-top: 1px solid #e2e8f0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-        margin: 10px;
-    }
-    
-    h1 {
-        font-size: 2em;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-    
-    .action-buttons button {
-        min-width: auto;
-    }
-    
-    .examples {
-        justify-content: center;
-    }
-}
-
-/* Success animation for copy button */
-.copied {
-    background: #48bb78 !important;
-    animation: pulse 0.6s ease-in-out;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* API Configuration Styles */
+/* ------------------------------     API Configuration Section (Bot Mode, Providers, Debug)    ------------------------------ */
 .api-config-section {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
@@ -306,74 +262,14 @@ input[type="tel"]:focus {
     margin-bottom: 30px;
 }
 
-.api-config-section h3 {
-    color: #4a5568;
-    margin-bottom: 10px;
-}
-
-.toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 20px 0;
-    padding: 15px;
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-}
-
-.toggle-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #4a5568;
-}
-
-.toggle-label input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #667eea;
-}
-
-.toggle-help {
-    color: #718096;
-    font-size: 0.9em;
-    font-style: italic;
-}
-
 .bot-config-options {
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 20px;
-    margin-top: 15px;
 }
 
-.select-container {
-    margin-bottom: 20px;
-}
-
-.service-select {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1em;
-    background-color: white;
-}
-
-.service-select:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.api-credentials {
-    margin: 20px 0;
-}
-
+/* Provider credentials, bulk messaging, etc. (Twilio, WhatsApp Business API, 360dialog, etc.) */
 .provider-credentials {
     background: #f7fafc;
     border: 1px solid #e2e8f0;
@@ -382,240 +278,13 @@ input[type="tel"]:focus {
     margin-bottom: 15px;
 }
 
-.provider-credentials h4 {
-    color: #4a5568;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 8px;
-}
-
-.credential-input {
-    margin-bottom: 15px;
-}
-
-.credential-input input {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 0.95em;
-}
-
-.credential-input input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
-}
-
-.bulk-messaging {
-    background: #fef7f0;
-    border: 1px solid #fed7aa;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
-}
-
-.bulk-messaging h4 {
-    color: #ea580c;
-    margin-bottom: 15px;
-}
-
-.bulk-option textarea {
-    width: 100%;
-    min-height: 100px;
-    padding: 12px;
-    border: 1px solid #fed7aa;
-    border-radius: 6px;
-    resize: vertical;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9em;
-}
-
-.schedule-inputs {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-.schedule-inputs input[type="datetime-local"] {
-    padding: 8px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 0.9em;
-}
-
-.schedule-inputs input[type="datetime-local"]:disabled {
-    background-color: #f3f4f6;
-    color: #9ca3af;
-}
-
-.template-option {
-    margin: 15px 0;
-}
-
-.template-option select {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    background-color: white;
-    font-size: 0.95em;
-}
-
-.bot-action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 25px;
-    flex-wrap: wrap;
-}
-
-.config-btn {
-    flex: 1;
-    min-width: 150px;
-    padding: 12px 20px;
-    font-size: 0.95em;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-#save-api-config-btn {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-}
-
-#save-api-config-btn:hover {
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-}
-
-#test-connection-btn {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: white;
-}
-
-#test-connection-btn:hover {
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-}
-
-#send-bot-message-btn {
-    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-    color: white;
-}
-
-#send-bot-message-btn:hover {
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-}
-
-/* Status indicators */
-.status-indicator {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.status-connected {
-    background-color: #10b981;
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-}
-
-.status-disconnected {
-    background-color: #ef4444;
-}
-
-.status-testing {
-    background-color: #f59e0b;
-    animation: pulse 1.5s infinite;
-}
-
-/* Progress bar for bulk messaging */
-.progress-container {
-    margin: 15px 0;
-    background-color: #f3f4f6;
-    border-radius: 10px;
-    height: 8px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #10b981, #059669);
-    border-radius: 10px;
-    transition: width 0.3s ease;
-    width: 0%;
-}
-
-/* Responsive design for API section */
-@media (max-width: 768px) {
-    .api-config-section {
-        padding: 15px;
-    }
-    
-    .bot-action-buttons {
-        flex-direction: column;
-    }
-    
-    .config-btn {
-        min-width: auto;
-    }
-    
-    .toggle-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-}
-
-/* Demo mode styles */
-.demo-mode-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 15px 0;
-    padding: 15px;
-    background: #fef3c7;
-    border: 1px solid #fbbf24;
-    border-radius: 8px;
-}
-
-.demo-mode-container .toggle-help {
-    color: #92400e;
-}
-
-/* Debug panel styles */
+/* ------------------------------     Debug Panel    ------------------------------ */
 .debug-panel {
     background: #f3f4f6;
     border: 1px solid #d1d5db;
     border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
-}
-
-.debug-panel h4 {
-    color: #374151;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #d1d5db;
-    padding-bottom: 8px;
-}
-
-.debug-toggle {
-    margin-bottom: 15px;
-}
-
-.debug-toggle label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9em;
-    color: #4b5563;
-    cursor: pointer;
-}
-
-.debug-toggle input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
 }
 
 .debug-output {
@@ -627,77 +296,21 @@ input[type="tel"]:focus {
     overflow-y: auto;
 }
 
-.debug-output pre {
-    color: #d1d5db;
-    font-family: 'Courier New', monospace;
-    font-size: 0.85em;
-    margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+/* ------------------------------    Responsive Design     ------------------------------ */
+@media (max-width: 768px) {
+    .container { padding: 20px; margin: 10px; }
+    .action-buttons { flex-direction: column; }
+    .config-btn { min-width: auto; }
 }
 
-.debug-btn {
-    background: #4b5563;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    margin: 10px 5px 0 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* ------------------------------    Extra Effects ------------------------------ */
+.copied {
+    background: #48bb78 !important;
+    animation: pulse 0.6s ease-in-out;
 }
 
-.debug-btn:hover {
-    background: #374151;
-}
-
-/* Status indicators for debugging */
-.debug-status {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.75em;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-right: 8px;
-}
-
-.debug-status.success {
-    background-color: #d1fae5;
-    color: #065f46;
-}
-
-.debug-status.error {
-    background-color: #fee2e2;
-    color: #991b1b;
-}
-
-.debug-status.warning {
-    background-color: #fef3c7;
-    color: #92400e;
-}
-
-.debug-status.info {
-    background-color: #dbeafe;
-    color: #1e40af;
-}
-
-/* Demo mode indicator */
-.demo-mode-active {
-    position: relative;
-}
-
-.demo-mode-active::after {
-    content: "🧪 DEMO";
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #fbbf24;
-    color: #92400e;
-    font-size: 0.7em;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 4px;
-    z-index: 10;
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
