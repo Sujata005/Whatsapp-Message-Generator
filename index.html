@@ -4,32 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Message Generator</title>
+    <!-- External stylesheet for page styling -->
     <link rel="stylesheet" href="styles.css">
-</head>
+</head>         
+
 <body>
     <div class="container">
+        <!-- App Title and Introduction -->
         <h1>📝 Message Generator</h1>
         <p class="subtitle">Generate predefined messages from your prompts and customize them as needed</p>
         
+        <!-- User Input Section -->
         <div class="input-section">
             <label for="prompt">Enter your prompt:</label>
             <input type="text" id="prompt" placeholder="e.g., I want to send Diwali wishes to my customers">
             <button id="generate-btn">Generate Message</button>
         </div>
         
+        <!-- Output Section (Hidden until a message is generated) -->
         <div class="output-section" id="output-section" style="display: none;">
             <h3>Generated Message:</h3>
+            
+            <!-- Auto-generated message display -->
             <div class="message-display" id="message-display"></div>
             
+            <!-- User editable message box -->
             <label for="editable-message">Edit your message:</label>
             <textarea id="editable-message" rows="4" placeholder="Your generated message will appear here for editing..."></textarea>
             
+            <!-- WhatsApp sending option -->
             <div class="whatsapp-section">
                 <label for="whatsapp-number">WhatsApp Number (with country code):</label>
                 <input type="tel" id="whatsapp-number" placeholder="e.g., +91 9876543210 or +1 234 567 8900">
                 <small class="number-help">💡 Include country code (e.g., +91 for India, +1 for US)</small>
             </div>
             
+            <!-- Action buttons -->
             <div class="action-buttons">
                 <button id="copy-btn">📋 Copy Message</button>
                 <button id="whatsapp-btn">💬 Send to WhatsApp</button>
@@ -37,9 +47,11 @@
             </div>
         </div>
         
+        <!-- Example Prompts Section -->
         <div class="examples-section">
             <h3>Example Prompts:</h3>
             <div class="examples">
+                <!-- Quick examples for autofill -->
                 <span class="example-tag" onclick="fillPrompt('I want to send Diwali wishes to my customers')">Diwali wishes</span>
                 <span class="example-tag" onclick="fillPrompt('I need to send a birthday message to my friend')">Birthday message</span>
                 <span class="example-tag" onclick="fillPrompt('I want to invite people to my wedding')">Wedding invitation</span>
@@ -49,10 +61,12 @@
             </div>
         </div>
         
+        <!-- Bot Messaging Configuration Section -->
         <div class="api-config-section" id="api-config-section">
             <h3>🤖 Bot Messaging Configuration</h3>
             <p class="subtitle">Configure automated messaging services to send messages as a bot</p>
             
+            <!-- Toggle for enabling/disabling bot mode -->
             <div class="toggle-container">
                 <label class="toggle-label">
                     <input type="checkbox" id="enable-bot-mode">
@@ -61,6 +75,7 @@
                 <span class="toggle-help">Switch to automated messaging mode</span>
             </div>
             
+            <!-- Demo mode for testing without real API -->
             <div class="demo-mode-container">
                 <label class="toggle-label">
                     <input type="checkbox" id="enable-demo-mode">
@@ -69,7 +84,10 @@
                 <span class="toggle-help">🧪 Test without real API credentials (simulates sending)</span>
             </div>
             
+            <!-- Dynamic provider-specific configuration (hidden until bot mode is enabled) -->
             <div id="bot-config-options" class="bot-config-options" style="display: none;">
+                
+                <!-- Service provider selection -->
                 <div class="select-container">
                     <label for="service-provider">Service Provider:</label>
                     <select id="service-provider" class="service-select">
@@ -82,7 +100,9 @@
                     </select>
                 </div>
                 
+                <!-- API credentials input fields for different providers -->
                 <div id="api-credentials" class="api-credentials">
+                    
                     <!-- Twilio credentials -->
                     <div id="twilio-credentials" class="provider-credentials" style="display: none;">
                         <h4>Twilio Credentials</h4>
@@ -130,9 +150,10 @@
                         </div>
                     </div>
                     
-                    <!-- Other providers will be dynamically loaded -->
+                    <!-- Additional providers can be added here -->
                 </div>
                 
+                <!-- Bulk messaging options -->
                 <div class="bulk-messaging">
                     <h4>Bulk Messaging</h4>
                     <div class="bulk-option">
@@ -142,6 +163,8 @@
 +1 2345678900
 +44 7700900123"></textarea>
                     </div>
+                    
+                    <!-- Scheduling messages -->
                     <div class="scheduling-option">
                         <label for="schedule-message">Schedule Message:</label>
                         <div class="schedule-inputs">
@@ -149,6 +172,8 @@
                             <input type="datetime-local" id="schedule-datetime" disabled>
                         </div>
                     </div>
+                    
+                    <!-- Template selection -->
                     <div class="template-option">
                         <label for="message-template-type">Message Template Type:</label>
                         <select id="message-template-type">
@@ -162,12 +187,14 @@
                     </div>
                 </div>
                 
+                <!-- Bot action buttons -->
                 <div class="bot-action-buttons">
                     <button id="save-api-config-btn" class="config-btn">Save Configuration</button>
                     <button id="test-connection-btn" class="config-btn">Test Connection</button>
                     <button id="send-bot-message-btn" class="config-btn">Send via Bot</button>
                 </div>
                 
+                <!-- Debug panel for developers -->
                 <div class="debug-panel" id="debug-panel">
                     <h4>🔍 Debug Information</h4>
                     <div class="debug-toggle">
@@ -185,11 +212,13 @@
             </div>
         </div>
         
+        <!-- Footer Note -->
         <div class="footer">
             <p>💡 Tip: Generated messages include placeholders like {name} that you can customize for each recipient</p>
         </div>
     </div>
     
+    <!-- External script for functionality -->
     <script src="script.js"></script>
 </body>
 </html>
