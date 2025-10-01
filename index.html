@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Message Generator</h1>
+        <p class="subtitle">Generate predefined messages from your prompts and customize them as needed</p>
+        
+        <div class="input-section">
+            <label for="prompt">Enter your prompt:</label>
+            <input type="text" id="prompt" placeholder="e.g., I want to send Diwali wishes to my customers">
+            <button id="generate-btn">Generate Message</button>
+        </div>
+        
+        <div class="output-section" id="output-section" style="display: none;">
+            <h3>Generated Message:</h3>
+            <div class="message-display" id="message-display"></div>
+            
+            <label for="editable-message">Edit your message:</label>
+            <textarea id="editable-message" rows="4" placeholder="Your generated message will appear here for editing..."></textarea>
+            
+            <div class="whatsapp-section">
+                <label for="whatsapp-number">WhatsApp Number (with country code):</label>
+                <input type="tel" id="whatsapp-number" placeholder="e.g., +91 9876543210 or +1 234 567 8900">
+                <small class="number-help">💡 Include country code (e.g., +91 for India, +1 for US)</small>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="copy-btn">📋 Copy Message</button>
+                <button id="whatsapp-btn">💬 Send to WhatsApp</button>
+                <button id="regenerate-btn">🔄 Generate Another</button>
+            </div>
+        </div>
+        
+        <div class="examples-section">
+            <h3>Example Prompts:</h3>
+            <div class="examples">
+                <span class="example-tag" onclick="fillPrompt('I want to send Diwali wishes to my customers')">Diwali wishes</span>
+                <span class="example-tag" onclick="fillPrompt('I need to send a birthday message to my friend')">Birthday message</span>
+                <span class="example-tag" onclick="fillPrompt('I want to invite people to my wedding')">Wedding invitation</span>
+                <span class="example-tag" onclick="fillPrompt('I need to send a thank you message to my clients')">Thank you note</span>
+                <span class="example-tag" onclick="fillPrompt('I want to send Christmas greetings')">Christmas wishes</span>
+                <span class="example-tag" onclick="fillPrompt('I need to send a business meeting reminder')">Meeting reminder</span>
+            </div>
+        </div>
+        
+        <div class="api-config-section" id="api-config-section">
+            <h3>🤖 Bot Messaging Configuration</h3>
+            <p class="subtitle">Configure automated messaging services to send messages as a bot</p>
+            
+            <div class="toggle-container">
+                <label class="toggle-label">
+                    <input type="checkbox" id="enable-bot-mode">
+                    <span class="toggle-text">Enable Bot Mode</span>
+                </label>
+                <span class="toggle-help">Switch to automated messaging mode</span>
+            </div>
+            
+            <div class="demo-mode-container">
+                <label class="toggle-label">
+                    <input type="checkbox" id="enable-demo-mode">
+                    <span class="toggle-text">Demo Mode</span>
+                </label>
+                <span class="toggle-help">🧪 Test without real API credentials (simulates sending)</span>
+            </div>
+            
+            <div id="bot-config-options" class="bot-config-options" style="display: none;">
+                <div class="select-container">
+                    <label for="service-provider">Service Provider:</label>
+                    <select id="service-provider" class="service-select">
+                        <option value="">-- Select a Service --</option>
+                        <option value="twilio">Twilio</option>
+                        <option value="whatsapp-business">WhatsApp Business API</option>
+                        <option value="360dialog">360dialog</option>
+                        <option value="messagebird">MessageBird</option>
+                        <option value="vonage">Vonage (Nexmo)</option>
+                    </select>
+                </div>
+                
+                <div id="api-credentials" class="api-credentials">
+                    <!-- Twilio credentials -->
+                    <div id="twilio-credentials" class="provider-credentials" style="display: none;">
+                        <h4>Twilio Credentials</h4>
+                        <div class="credential-input">
+                            <label for="twilio-account-sid">Account SID:</label>
+                            <input type="text" id="twilio-account-sid" placeholder="Enter your Twilio Account SID">
+                        </div>
+                        <div class="credential-input">
+                            <label for="twilio-auth-token">Auth Token:</label>
+                            <input type="password" id="twilio-auth-token" placeholder="Enter your Twilio Auth Token">
+                        </div>
+                        <div class="credential-input">
+                            <label for="twilio-phone-number">Twilio WhatsApp Number:</label>
+                            <input type="text" id="twilio-phone-number" placeholder="e.g., +14155238886">
+                        </div>
+                    </div>
+                    
+                    <!-- WhatsApp Business API credentials -->
+                    <div id="whatsapp-business-credentials" class="provider-credentials" style="display: none;">
+                        <h4>WhatsApp Business API Credentials</h4>
+                        <div class="credential-input">
+                            <label for="wa-phone-number-id">Phone Number ID:</label>
+                            <input type="text" id="wa-phone-number-id" placeholder="Enter your Phone Number ID">
+                        </div>
+                        <div class="credential-input">
+                            <label for="wa-access-token">Access Token:</label>
+                            <input type="password" id="wa-access-token" placeholder="Enter your Access Token">
+                        </div>
+                        <div class="credential-input">
+                            <label for="wa-business-account-id">Business Account ID:</label>
+                            <input type="text" id="wa-business-account-id" placeholder="Enter your Business Account ID">
+                        </div>
+                    </div>
+                    
+                    <!-- 360dialog credentials -->
+                    <div id="360dialog-credentials" class="provider-credentials" style="display: none;">
+                        <h4>360dialog Credentials</h4>
+                        <div class="credential-input">
+                            <label for="360dialog-api-key">API Key:</label>
+                            <input type="password" id="360dialog-api-key" placeholder="Enter your 360dialog API Key">
+                        </div>
+                        <div class="credential-input">
+                            <label for="360dialog-phone-number">WhatsApp Number:</label>
+                            <input type="text" id="360dialog-phone-number" placeholder="e.g., +14155551234">
+                        </div>
+                    </div>
+                    
+                    <!-- Other providers will be dynamically loaded -->
+                </div>
+                
+                <div class="bulk-messaging">
+                    <h4>Bulk Messaging</h4>
+                    <div class="bulk-option">
+                        <label for="recipient-list">Recipient Numbers (one per line):</label>
+                        <textarea id="recipient-list" placeholder="Enter WhatsApp numbers with country code, one per line:
++91 9876543210
++1 2345678900
++44 7700900123"></textarea>
+                    </div>
+                    <div class="scheduling-option">
+                        <label for="schedule-message">Schedule Message:</label>
+                        <div class="schedule-inputs">
+                            <input type="checkbox" id="enable-scheduling">
+                            <input type="datetime-local" id="schedule-datetime" disabled>
+                        </div>
+                    </div>
+                    <div class="template-option">
+                        <label for="message-template-type">Message Template Type:</label>
+                        <select id="message-template-type">
+                            <option value="custom">Custom Message</option>
+                            <option value="template">Approved Template</option>
+                        </select>
+                    </div>
+                    <div id="template-name-container" style="display: none;">
+                        <label for="template-name">Template Name:</label>
+                        <input type="text" id="template-name" placeholder="Enter approved template name">
+                    </div>
+                </div>
+                
+                <div class="bot-action-buttons">
+                    <button id="save-api-config-btn" class="config-btn">Save Configuration</button>
+                    <button id="test-connection-btn" class="config-btn">Test Connection</button>
+                    <button id="send-bot-message-btn" class="config-btn">Send via Bot</button>
+                </div>
+                
+                <div class="debug-panel" id="debug-panel">
+                    <h4>🔍 Debug Information</h4>
+                    <div class="debug-toggle">
+                        <label>
+                            <input type="checkbox" id="enable-debug-mode">
+                            Show detailed debugging information
+                        </label>
+                    </div>
+                    <div id="debug-output" class="debug-output" style="display: none;">
+                        <pre id="debug-log"></pre>
+                        <button id="clear-debug-btn" class="debug-btn">Clear Log</button>
+                        <button id="download-debug-btn" class="debug-btn">Download Log</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 Tip: Generated messages include placeholders like {name} that you can customize for each recipient</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,703 @@
+/* Message Generator Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    padding: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    text-align: center;
+    color: #4a5568;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #718096;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.input-section {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#generate-btn {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 15px;
+}
+
+.output-section {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e2e8f0;
+}
+
+.output-section h3 {
+    color: #4a5568;
+    margin-bottom: 15px;
+}
+
+.message-display {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    color: #2d3748;
+    white-space: pre-wrap;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 15px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.whatsapp-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+}
+
+.whatsapp-section label {
+    color: #166534;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input[type="tel"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #d1fae5;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    margin-bottom: 5px;
+}
+
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #25D366;
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+}
+
+.number-help {
+    color: #16a34a;
+    font-size: 0.85em;
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    flex: 1;
+    min-width: 150px;
+}
+
+#copy-btn {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+#copy-btn:hover {
+    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+}
+
+#regenerate-btn {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+}
+
+#regenerate-btn:hover {
+    box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
+}
+
+#whatsapp-btn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+#whatsapp-btn:hover {
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+#whatsapp-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.examples-section {
+    margin-bottom: 30px;
+}
+
+.examples-section h3 {
+    color: #4a5568;
+    margin-bottom: 15px;
+}
+
+.examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.example-tag {
+    background: #edf2f7;
+    color: #4a5568;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.example-tag:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.footer {
+    text-align: center;
+    color: #718096;
+    font-style: italic;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons button {
+        min-width: auto;
+    }
+    
+    .examples {
+        justify-content: center;
+    }
+}
+
+/* Success animation for copy button */
+.copied {
+    background: #48bb78 !important;
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* API Configuration Styles */
+.api-config-section {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.api-config-section h3 {
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.toggle-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #667eea;
+}
+
+.toggle-help {
+    color: #718096;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.bot-config-options {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.select-container {
+    margin-bottom: 20px;
+}
+
+.service-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: white;
+}
+
+.service-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.api-credentials {
+    margin: 20px 0;
+}
+
+.provider-credentials {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.provider-credentials h4 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+}
+
+.credential-input {
+    margin-bottom: 15px;
+}
+
+.credential-input input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95em;
+}
+
+.credential-input input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.bulk-messaging {
+    background: #fef7f0;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.bulk-messaging h4 {
+    color: #ea580c;
+    margin-bottom: 15px;
+}
+
+.bulk-option textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid #fed7aa;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.schedule-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.schedule-inputs input[type="datetime-local"] {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+.schedule-inputs input[type="datetime-local"]:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+}
+
+.template-option {
+    margin: 15px 0;
+}
+
+.template-option select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 0.95em;
+}
+
+.bot-action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.config-btn {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 20px;
+    font-size: 0.95em;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#save-api-config-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+}
+
+#save-api-config-btn:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+#test-connection-btn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+#test-connection-btn:hover {
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+#send-bot-message-btn {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    color: white;
+}
+
+#send-bot-message-btn:hover {
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Status indicators */
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-connected {
+    background-color: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.status-disconnected {
+    background-color: #ef4444;
+}
+
+.status-testing {
+    background-color: #f59e0b;
+    animation: pulse 1.5s infinite;
+}
+
+/* Progress bar for bulk messaging */
+.progress-container {
+    margin: 15px 0;
+    background-color: #f3f4f6;
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #059669);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* Responsive design for API section */
+@media (max-width: 768px) {
+    .api-config-section {
+        padding: 15px;
+    }
+    
+    .bot-action-buttons {
+        flex-direction: column;
+    }
+    
+    .config-btn {
+        min-width: auto;
+    }
+    
+    .toggle-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* Demo mode styles */
+.demo-mode-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    padding: 15px;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+}
+
+.demo-mode-container .toggle-help {
+    color: #92400e;
+}
+
+/* Debug panel styles */
+.debug-panel {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.debug-panel h4 {
+    color: #374151;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 8px;
+}
+
+.debug-toggle {
+    margin-bottom: 15px;
+}
+
+.debug-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.debug-toggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.debug-output {
+    margin-top: 15px;
+    background: #1f2937;
+    border-radius: 6px;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.debug-output pre {
+    color: #d1d5db;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.debug-btn {
+    background: #4b5563;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin: 10px 5px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.debug-btn:hover {
+    background: #374151;
+}
+
+/* Status indicators for debugging */
+.debug-status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 8px;
+}
+
+.debug-status.success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.debug-status.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.debug-status.warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.debug-status.info {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+/* Demo mode indicator */
+.demo-mode-active {
+    position: relative;
+}
+
+.demo-mode-active::after {
+    content: "🧪 DEMO";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #fbbf24;
+    color: #92400e;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 10;
+}
