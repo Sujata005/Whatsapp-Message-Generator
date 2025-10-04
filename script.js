@@ -88,6 +88,7 @@ const copyBtn = document.getElementById('copy-btn');
 const regenerateBtn = document.getElementById('regenerate-btn');
 const whatsappBtn = document.getElementById('whatsapp-btn');
 const whatsappNumber = document.getElementById('whatsapp-number');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Bot messaging DOM elements
 const enableBotMode = document.getElementById('enable-bot-mode');
@@ -132,9 +133,10 @@ enableDebugMode.addEventListener('change', toggleDebugMode);
 clearDebugBtn.addEventListener('click', clearDebugLog);
 downloadDebugBtn.addEventListener('click', downloadDebugLog);
 
-// Allow Enter key to generate message
-promptInput.addEventListener('keypress', function(e) {
+// Allow Enter key to generate message (use keydown for better compatibility)
+promptInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
+        e.preventDefault();
         generateMessage();
     }
 });
@@ -169,6 +171,13 @@ function generateMessage() {
     
     // Focus on editable textarea
     editableMessage.focus();
+
+    // Enable WhatsApp button only if a valid number is present
+    if (whatsappNumber && whatsappNumber.value && validatePhoneNumber(whatsappNumber.value)) {
+        whatsappBtn.disabled = false;
+    } else {
+        whatsappBtn.disabled = true;
+    }
 }
 
 // Function to identify message type from prompt
@@ -353,7 +362,32 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.placeholder = placeholders[currentPlaceholder];
         currentPlaceholder = (currentPlaceholder + 1) % placeholders.length;
     }, 3000);
+
+    // Initialize theme
+    try {
+        const savedTheme = localStorage.getItem('appTheme') || 'light';
+        if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+        updateThemeToggle();
+    } catch (e) {
+        console.warn('Unable to read theme preference:', e);
+    }
 });
+
+// Theme toggle handler
+if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('appTheme', isDark ? 'dark' : 'light'); } catch(e) {}
+        updateThemeToggle();
+    });
+}
+
+function updateThemeToggle() {
+    if (!themeToggle) return;
+    const isDark = document.documentElement.classList.contains('dark');
+    themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+    themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+}
 
 // Bot messaging configuration storage
 let botConfig = {

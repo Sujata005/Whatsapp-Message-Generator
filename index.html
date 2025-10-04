@@ -11,39 +11,49 @@
 <body>
     <div class="container">
         <!-- App Title and Introduction -->
-        <h1>📝 Message Generator</h1>
-        <p class="subtitle">Generate predefined messages from your prompts and customize them as needed</p>
+        <div class="header-row">
+            <div>
+                <h1>📝 Message Generator</h1>
+                <p class="subtitle">Generate predefined messages from your prompts and customize them as needed</p>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" aria-pressed="false" class="theme-toggle" type="button">🌙 Dark</button>
+            </div>
+        </div>
         
         <!-- User Input Section -->
         <div class="input-section">
             <label for="prompt">Enter your prompt:</label>
-            <input type="text" id="prompt" placeholder="e.g., I want to send Diwali wishes to my customers">
-            <button id="generate-btn">Generate Message</button>
+            <div class="prompt-card" role="group" aria-label="Message prompt field">
+                <input type="text" id="prompt" aria-label="Message prompt" placeholder="e.g., I want to send Diwali wishes to my customers">
+                <button id="generate-btn" type="button" aria-label="Generate message">Generate</button>
+            </div>
+            <p class="input-hint">Tip: Be short and descriptive (occasion, recipient, tone). Press Enter to generate.</p>
         </div>
         
         <!-- Output Section (Hidden until a message is generated) -->
         <div class="output-section" id="output-section" style="display: none;">
             <h3>Generated Message:</h3>
-            
+
             <!-- Auto-generated message display -->
-            <div class="message-display" id="message-display"></div>
-            
+            <div class="message-display" id="message-display" role="region" aria-live="polite"></div>
+
             <!-- User editable message box -->
             <label for="editable-message">Edit your message:</label>
             <textarea id="editable-message" rows="4" placeholder="Your generated message will appear here for editing..."></textarea>
-            
+
             <!-- WhatsApp sending option -->
             <div class="whatsapp-section">
                 <label for="whatsapp-number">WhatsApp Number (with country code):</label>
-                <input type="tel" id="whatsapp-number" placeholder="e.g., +91 9876543210 or +1 234 567 8900">
+                <input type="tel" id="whatsapp-number" aria-label="WhatsApp number" placeholder="e.g., +91 9876543210 or +1 234 567 8900">
                 <small class="number-help">💡 Include country code (e.g., +91 for India, +1 for US)</small>
             </div>
-            
+
             <!-- Action buttons -->
             <div class="action-buttons">
-                <button id="copy-btn">📋 Copy Message</button>
-                <button id="whatsapp-btn">💬 Send to WhatsApp</button>
-                <button id="regenerate-btn">🔄 Generate Another</button>
+                <button id="copy-btn" type="button">📋 Copy Message</button>
+                <button id="whatsapp-btn" type="button" disabled>💬 Send to WhatsApp</button>
+                <button id="regenerate-btn" type="button">🔄 Generate Another</button>
             </div>
         </div>
         
