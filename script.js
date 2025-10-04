@@ -986,7 +986,11 @@ function checkScheduledMessages() {
             remaining.push(msg);
         }
     });
-    
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    this.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+});
+
     // Send due messages
     toSend.forEach(async (msg) => {
         try {
@@ -1003,4 +1007,5 @@ function checkScheduledMessages() {
 
 // Export functions for global use
 window.fillPrompt = fillPrompt;
+
 
