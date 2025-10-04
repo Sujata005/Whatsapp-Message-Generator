@@ -32,6 +32,52 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Color variables for light/dark */
+:root {
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --muted: #718096;
+    --text: #1f2937;
+    --primary-start: #667eea;
+    --primary-end: #764ba2;
+    --success: #10b981;
+    --danger: #ef4444;
+    --border: rgba(16,24,40,0.06);
+    --card-bg: rgba(255,255,255,0.02);
+    --input-border: rgba(226,232,240,0.9);
+    --placeholder: #9aa4bf;
+    --example-bg: #edf2f7;
+    --example-hover-bg: #667eea;
+    --footer-border: rgba(226,232,240,0.6);
+    --debug-bg: #111827;
+    --primary-glow: rgba(102,126,234,0.12);
+}
+
+.dark {
+    --bg: #0b1220;
+    --panel: #0f1724;
+    --muted: #94a3b8;
+    --text: #e6eef8;
+    --primary-start: #4f46e5;
+    --primary-end: #06b6d4;
+    --success: #34d399;
+    --danger: #f87171;
+    --border: rgba(255,255,255,0.06);
+    --card-bg: rgba(255,255,255,0.02);
+    --input-border: rgba(255,255,255,0.06);
+    --placeholder: #6b7280;
+    --example-bg: rgba(255,255,255,0.02);
+    --example-hover-bg: #334155;
+    --footer-border: rgba(255,255,255,0.06);
+    --debug-bg: #0b1220;
+    --primary-glow: rgba(79,70,229,0.14);
+}
+
+/* Make the body gradient driven by theme colors */
+body { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); transition: background 300ms ease; }
+
+.container { background: var(--panel); color: var(--text); transition: background 260ms ease, color 260ms ease, box-shadow 260ms ease; }
+
 /* Fade-in animation for smooth page load */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -41,16 +87,18 @@ body {
 /* ------------------------------    Headings & Text    ------------------------------ */
 h1 {
     text-align: center;
-    color: #4a5568;
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    color: var(--text);
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+    transition: color 200ms ease;
 }
 
 .subtitle {
-    text-align: center;
-    color: #718096;
-    font-size: 1.1em;
-    margin-bottom: 30px;
+    text-align: left;
+    color: var(--muted);
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+    transition: color 200ms ease;
 }
 
 /* ------------------------------     Input Section (Prompt + Button)    ------------------------------ */
@@ -58,33 +106,104 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* Header row to hold title and small actions */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-actions { display: flex; align-items: center; gap: 8px; }
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.theme-toggle:hover { transform: translateY(-2px); }
+
+
+.prompt-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.input-hint {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.95em;
+}
+
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #4a5568;
+    color: var(--muted);
 }
 
 /* Text input styles */
 input[type="text"] {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--input-border);
     border-radius: 8px;
     font-size: 1em;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.22s ease, box-shadow 0.2s ease, background 0.2s ease;
     margin-bottom: 15px;
+    background: transparent;
+    color: var(--text);
 }
 
 input[type="text"]:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--primary-start);
+    box-shadow: 0 0 0 6px var(--primary-glow);
+}
+
+/* Make the input in the prompt-row take remaining space and keep button fixed */
+.prompt-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 200ms ease, border-color 200ms ease;
+    animation: popIn 360ms ease both;
+}
+
+.prompt-card:focus-within { transform: translateY(-6px); box-shadow: 0 14px 36px var(--primary-glow); }
+
+.prompt-card input[type="text"] {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    background: transparent;
+    border: none;
+    padding: 8px 10px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.prompt-card input::placeholder { color: var(--placeholder); }
+
+.prompt-card button {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    border-radius: 10px;
 }
 
 /* ------------------------------     Buttons     ------------------------------ */
 button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -92,12 +211,19 @@ button {
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 160ms ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 12px 30px rgba(16,24,40,0.14);
+    filter: saturate(1.05);
+}
+
+/* small pop-in for components */
+@keyframes popIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.995); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 button:active {
@@ -106,36 +232,58 @@ button:active {
 
 /* Main generate button */
 #generate-btn {
-    width: 100%;
-    font-size: 1.1em;
-    padding: 15px;
+    width: auto;
+    font-size: 1em;
+}
+
+#generate-btn[disabled],
+.action-buttons button[disabled],
+.config-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* ------------------------------     Output Section (Generated Message)     ------------------------------ */
 .output-section {
-    background: #f7fafc;
+    background: var(--card-bg);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
+    animation: revealUp 300ms ease both;
 }
 
 .output-section h3 {
-    color: #4a5568;
+    color: var(--text);
     margin-bottom: 15px;
 }
 
 /* Display generated text */
 .message-display {
-    background: white;
-    border: 1px solid #e2e8f0;
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 20px;
     font-family: 'Courier New', monospace;
     line-height: 1.6;
-    color: #2d3748;
+    color: var(--text);
     white-space: pre-wrap;
+}
+
+/* Slightly larger and clearer editable area */
+textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    margin-bottom: 15px;
+    background: transparent;
+    color: var(--text);
 }
 
 /* Editable text area */
@@ -161,8 +309,8 @@ textarea:focus {
 .whatsapp-section {
     margin: 20px 0;
     padding: 15px;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
+    background: linear-gradient(180deg, rgba(16,185,129,0.04), rgba(16,185,129,0.02));
+    border: 1px solid rgba(16,185,129,0.12);
     border-radius: 8px;
 }
 
@@ -175,9 +323,11 @@ textarea:focus {
 input[type="tel"] {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #d1fae5;
+    border: 2px solid var(--input-border);
     border-radius: 8px;
     margin-bottom: 5px;
+    background: transparent;
+    color: var(--text);
 }
 
 input[type="tel"]:focus {
@@ -187,7 +337,7 @@ input[type="tel"]:focus {
 }
 
 .number-help {
-    color: #16a34a;
+    color: var(--muted);
     font-size: 0.85em;
     font-style: italic;
     display: block;
@@ -206,8 +356,9 @@ input[type="tel"]:focus {
 }
 
 /* Specific button colors */
-#copy-btn { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); }
-#regenerate-btn { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); }
+/* Accent buttons use the same palette but with subtle tonal shifts to work in dark mode */
+#copy-btn { background: linear-gradient(135deg, #34d399 0%, #059669 100%); }
+#regenerate-btn { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
 #whatsapp-btn { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
 
 #whatsapp-btn:disabled {
@@ -219,7 +370,7 @@ input[type="tel"]:focus {
 
 /* ------------------------------    Example Prompts Section    ------------------------------ */
 .examples-section h3 {
-    color: #4a5568;
+    color: var(--text);
     margin-bottom: 15px;
 }
 
@@ -230,49 +381,58 @@ input[type="tel"]:focus {
 }
 
 .example-tag {
-    background: #edf2f7;
-    color: #4a5568;
+    background: var(--example-bg);
+    color: var(--text);
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 220ms ease, background 220ms ease, color 220ms ease;
+    box-shadow: 0 4px 12px rgba(16,24,40,0.04);
 }
 
 .example-tag:hover {
-    background: #667eea;
+    background: var(--example-hover-bg);
     color: white;
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.example-tag { animation: float 6s ease-in-out infinite; }
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
 }
 
 /* ------------------------------    Footer Section    ------------------------------ */
 .footer {
     text-align: center;
-    color: #718096;
+    color: var(--muted);
     font-style: italic;
     padding-top: 20px;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--footer-border);
 }
 
 /* ------------------------------     API Configuration Section (Bot Mode, Providers, Debug)    ------------------------------ */
 .api-config-section {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
 }
 
 .bot-config-options {
-    background: white;
-    border: 1px solid #e2e8f0;
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px;
 }
 
 /* Provider credentials, bulk messaging, etc. (Twilio, WhatsApp Business API, 360dialog, etc.) */
 .provider-credentials {
-    background: #f7fafc;
-    border: 1px solid #e2e8f0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 15px;
@@ -280,8 +440,8 @@ input[type="tel"]:focus {
 
 /* ------------------------------     Debug Panel    ------------------------------ */
 .debug-panel {
-    background: #f3f4f6;
-    border: 1px solid #d1d5db;
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
@@ -289,7 +449,7 @@ input[type="tel"]:focus {
 
 .debug-output {
     margin-top: 15px;
-    background: #1f2937;
+    background: var(--debug-bg);
     border-radius: 6px;
     padding: 15px;
     max-height: 300px;
@@ -301,6 +461,18 @@ input[type="tel"]:focus {
     .container { padding: 20px; margin: 10px; }
     .action-buttons { flex-direction: column; }
     .config-btn { min-width: auto; }
+}
+
+/* Accessibility focus styles */
+button:focus, input:focus, textarea:focus, select:focus {
+    outline: 3px solid rgba(102,126,234,0.18);
+    outline-offset: 2px;
+}
+
+/* Reveal animation for output */
+@keyframes revealUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ------------------------------    Extra Effects ------------------------------ */
