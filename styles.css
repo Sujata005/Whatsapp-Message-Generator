@@ -107,24 +107,12 @@ h1 {
 }
 
 /* Header row to hold title and small actions */
-/* .header-row {
+.header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
     margin-left: 100px
-} */
-.header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-.header-row h1 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .header-row p{
@@ -504,4 +492,3 @@ button:focus, input:focus, textarea:focus, select:focus {
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
-
