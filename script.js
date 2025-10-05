@@ -97,6 +97,21 @@ const whatsappBtn = document.getElementById('whatsapp-btn');
 const whatsappNumber = document.getElementById('whatsapp-number');
 const themeToggle = document.getElementById('theme-toggle');
 
+// --- Personalization: DOM + state + helper ---
+const recipientName = document.getElementById('recipient-name');
+const senderName = document.getElementById('sender-name'); // NEW: sender name input
+const applyPlaceholdersBtn = document.getElementById('apply-placeholders');
+
+let currentTemplateRaw = null;   // stores the last chosen template
+let isManuallyEdited = false;    // prevents silent overwrite of user edits
+
+function applyPlaceholders(template, data) {
+  if (!template) return '';
+  return template.replace(/\{(\w+)\}/g, (_, key) => {
+    const v = data[key];
+    return (v !== undefined && v !== null && String(v).trim() !== '') ? String(v) : `{${key}}`;
+  });
+}
 // Bot messaging DOM elements
 const enableBotMode = document.getElementById('enable-bot-mode');
 const botConfigOptions = document.getElementById('bot-config-options');
@@ -170,9 +185,19 @@ function generateMessage() {
     
     // Show the output section
     outputSection.style.display = 'block';
-    messageDisplay.textContent = randomTemplate;
-    editableMessage.value = randomTemplate;
-    
+
+    // Remember raw template and apply personalization
+    currentTemplateRaw = randomTemplate;
+    isManuallyEdited = false;
+
+    const filled = applyPlaceholders(currentTemplateRaw, {
+      name: recipientName ? recipientName.value.trim() : '',
+      sender_name: senderName ? senderName.value.trim() : ''
+    });
+
+    messageDisplay.textContent = filled;
+    editableMessage.value = filled;
+        
     // Scroll to output section
     outputSection.scrollIntoView({ behavior: 'smooth' });
     
@@ -244,6 +269,29 @@ async function copyMessage() {
 // Function to update message display when editing
 editableMessage.addEventListener('input', function() {
     messageDisplay.textContent = this.value;
+    isManuallyEdited = true; // personalization won't auto-overwrite your edits
+});
+
+applyPlaceholdersBtn && applyPlaceholdersBtn.addEventListener('click', function () {
+  if (!currentTemplateRaw) {
+    alert('Please generate a message first.');
+    return;
+  }
+
+  // Ask before overwriting if user edited the text
+  if (isManuallyEdited) {
+    const ok = confirm('You edited the message. Applying personalization will overwrite those edits. Continue?');
+    if (!ok) return;
+    isManuallyEdited = false;
+  }
+
+  const filled = applyPlaceholders(currentTemplateRaw, {
+    name: recipientName ? recipientName.value.trim() : '',
+    sender_name: senderName ? senderName.value.trim() : ''
+  });
+
+  messageDisplay.textContent = filled;
+  editableMessage.value = filled;
 });
 
 // Phone number validation function
@@ -1014,5 +1062,3 @@ function checkScheduledMessages() {
 
 // Export functions for global use
 window.fillPrompt = fillPrompt;
-
-

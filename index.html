@@ -30,6 +30,25 @@
             </div>
             <p class="input-hint">Tip: Be short and descriptive (occasion, recipient, wishes, tone). Press Enter to generate.</p>
         </div>
+
+        <!-- Personalization -->
+        <section class="personalize-section" aria-labelledby="personalize-heading">
+            <h3 id="personalize-heading">Personalize</h3>
+
+            <label for="recipient-name">Recipient name</label>
+            <div class="personalize-row">
+                <input type="text" id="recipient-name" placeholder="e.g., Alex" inputmode="text" />
+                <button id="apply-placeholders" type="button" aria-label="Apply personalization to message">Apply</button>
+            </div>
+
+            <!-- Added: Sender name (for {sender_name}) -->
+            <label for="sender-name">Sender name</label>
+            <div class="personalize-row">
+                <input type="text" id="sender-name" placeholder="e.g., John" inputmode="text" />
+            </div>
+
+            <small class="number-help">This replaces {name} and {sender_name} in the generated message</small>
+        </section>
         
         <!-- Output Section (Hidden until a message is generated) -->
         <div class="output-section" id="output-section" style="display: none;">
