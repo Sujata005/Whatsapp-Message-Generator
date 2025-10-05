@@ -2,6 +2,12 @@
 
 // Predefined message templates
 const messageTemplates = {
+    // Morning Greetings
+    morning: [
+        "Good morning {name}! Wishing you a day filled with happiness and success. May your morning be as bright as your smile!",
+        "Rise and shine, {name}! May this morning bring you new opportunities and positive vibes. Have a fantastic day ahead!",
+        "Morning {name}! Just wanted to send you some positive energy to kickstart your day. May your day be productive and joyful!"
+    ],
     // Festival and Holiday Messages
     diwali: [
         "Hello {name},\n\nDiwali greetings! We wish you and your family a very happy and prosperous Diwali. May this festival of lights bring joy, happiness, and success to your life.\n\nWarm regards,\n{sender_name}",
@@ -66,6 +72,7 @@ const messageTemplates = {
 
 // Keywords to match prompts to message types
 const keywordMapping = {
+    morning: ['good morning', 'morning greetings', 'rise and shine'],
     diwali: ['diwali', 'deepavali', 'festival of lights'],
     christmas: ['christmas', 'xmas', 'holiday', 'festive season'],
     newyear: ['new year', 'newyear', '2024', '2025'],

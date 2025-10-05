@@ -28,7 +28,7 @@
                 <input type="text" id="prompt" aria-label="Message prompt" placeholder="e.g., I want to send Diwali wishes to my customers">
                 <button id="generate-btn" type="button" aria-label="Generate message">Generate</button>
             </div>
-            <p class="input-hint">Tip: Be short and descriptive (occasion, recipient, tone). Press Enter to generate.</p>
+            <p class="input-hint">Tip: Be short and descriptive (occasion, recipient, wishes, tone). Press Enter to generate.</p>
         </div>
         
         <!-- Output Section (Hidden until a message is generated) -->
@@ -62,6 +62,7 @@
             <h3>Example Prompts:</h3>
             <div class="examples">
                 <!-- Quick examples for autofill -->
+                <span class="example-tag" onclick="fillPrompt('Good morning to the person whose smile always lights up the room.')">Sweet Morning Texts</span>
                 <span class="example-tag" onclick="fillPrompt('I want to send Diwali wishes to my customers')">Diwali wishes</span>
                 <span class="example-tag" onclick="fillPrompt('I need to send a birthday message to my friend')">Birthday message</span>
                 <span class="example-tag" onclick="fillPrompt('I want to invite people to my wedding')">Wedding invitation</span>
