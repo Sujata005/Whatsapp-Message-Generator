@@ -123,6 +123,7 @@ h1 {
 
 
 .header-row p{
+    margin-top : 4px
     font-size : 0.9rem
 }
 
@@ -529,5 +530,6 @@ button:focus, input:focus, textarea:focus, select:focus {
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
+
 
 
