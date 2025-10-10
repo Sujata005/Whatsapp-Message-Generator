@@ -1,254 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Generator</title>
-    <!-- External stylesheet for page styling -->
-    <link rel="stylesheet" href="styles.css">
-</head>         
+  <!-- 
+    ==========================================
+    📝 Message Generator Web App
+    Author: Bean
+    Description: A simple and elegant web app 
+    to generate, edit, and send personalized 
+    messages with optional bot integration.
+    ==========================================
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message Generator</title>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
 <body>
-    <div class="container">
-        <!-- App Title and Introduction -->
-        <div class="header-row">
-            <div>
-                <h1>📝 Message Generator</h1>
-                <p class="subtitle">Generate predefined messages from your prompts and customize them as needed</p>
-            </div>
-            <div class="header-actions">
-                <button id="theme-toggle" aria-pressed="false" class="theme-toggle" type="button">🌙 Dark</button>
-            </div>
-        </div>
-        
-        <!-- User Input Section -->
-        <div class="input-section">
-            <label for="prompt">Enter your prompt:</label>
-            <div class="prompt-card" role="group" aria-label="Message prompt field">
-                <input type="text" id="prompt" aria-label="Message prompt" placeholder="e.g., I want to send Diwali wishes to my customers">
-                <button id="generate-btn" type="button" aria-label="Generate message">Generate</button>
-            </div>
-            <p class="input-hint">Tip: Be short and descriptive (occasion, recipient, wishes, tone). Press Enter to generate.</p>
-        </div>
+  <!-- ================= Main App Container ================= -->
+  <div class="container">
 
-        <!-- Personalization -->
-        <section class="personalize-section" aria-labelledby="personalize-heading">
-            <h3 id="personalize-heading">Personalize</h3>
+    <!-- ================= Header Section ================= -->
+    <header class="header-row">
+      <!-- Title & Subtitle -->
+      <div class="header-text">
+        <h1>📝 Message Generator</h1>
+        <p class="subtitle">
+          Generate predefined messages from your prompts and customize them easily.
+        </p>
+      </div>
 
-            <label for="recipient-name">Recipient name</label>
-            <div class="personalize-row">
-                <input type="text" id="recipient-name" placeholder="e.g., Alex" inputmode="text" />
-                <button id="apply-placeholders" type="button" aria-label="Apply personalization to message">Apply</button>
-            </div>
+      <!-- Theme Toggle Button (Top Right) -->
+      <div class="header-actions">
+        <button 
+          id="theme-toggle" 
+          class="theme-toggle" 
+          aria-pressed="false" 
+          type="button">
+          🌙 Dark
+        </button>
+      </div>
+    </header>
 
-            <!-- Added: Sender name (for {sender_name}) -->
-            <label for="sender-name">Sender name</label>
-            <div class="personalize-row">
-                <input type="text" id="sender-name" placeholder="e.g., John" inputmode="text" />
-            </div>
+    <!-- ================= User Input Section ================= -->
+    <section class="input-section">
+      <label for="prompt">Enter your prompt:</label>
 
-            <small class="number-help">This replaces {name} and {sender_name} in the generated message</small>
-        </section>
-        
-        <!-- Output Section (Hidden until a message is generated) -->
-        <div class="output-section" id="output-section" style="display: none;">
-            <h3>Generated Message:</h3>
+      <!-- Prompt Input Card -->
+      <div class="prompt-card" role="group" aria-label="Prompt input area">
+        <input 
+          type="text" 
+          id="prompt" 
+          aria-label="Message prompt" 
+          placeholder="e.g., I want to send Diwali wishes to my customers" />
+        <button id="generate-btn" type="button">Generate</button>
+      </div>
 
-            <!-- Auto-generated message display -->
-            <div class="message-display" id="message-display" role="region" aria-live="polite"></div>
+      <p class="input-hint">
+        💡 Tip: Keep it short (e.g. occasion, recipient, tone). Press Enter to generate.
+      </p>
+    </section>
 
-            <!-- User editable message box -->
-            <label for="editable-message">Edit your message:</label>
-            <textarea id="editable-message" rows="4" placeholder="Your generated message will appear here for editing..."></textarea>
+    <!-- ================= Personalization Section ================= -->
+    <section class="personalize-section" aria-labelledby="personalize-heading">
+      <h3 id="personalize-heading">Personalize</h3>
 
-            <!-- WhatsApp sending option -->
-            <div class="whatsapp-section">
-                <label for="whatsapp-number">WhatsApp Number (with country code):</label>
-                <input type="tel" id="whatsapp-number" aria-label="WhatsApp number" placeholder="e.g., +91 9876543210 or +1 234 567 8900">
-                <small class="number-help">💡 Include country code (e.g., +91 for India, +1 for US)</small>
-            </div>
+      <!-- Recipient Name -->
+      <label for="recipient-name">Recipient Name:</label>
+      <div class="personalize-row">
+        <input 
+          type="text" 
+          id="recipient-name" 
+          placeholder="e.g., Alex" 
+          inputmode="text" />
+        <button id="apply-placeholders" type="button">Apply</button>
+      </div>
 
-            <!-- Action buttons -->
-            <div class="action-buttons">
-                <button id="copy-btn" type="button">📋 Copy Message</button>
-                <button id="whatsapp-btn" type="button" disabled>💬 Send to WhatsApp</button>
-                <button id="regenerate-btn" type="button">🔄 Generate Another</button>
-            </div>
-        </div>
-        
-        <!-- Example Prompts Section -->
-        <div class="examples-section">
-            <h3>Example Prompts:</h3>
-            <div class="examples">
-                <!-- Quick examples for autofill -->
-                <span class="example-tag" onclick="fillPrompt('Good morning to the person whose smile always lights up the room.')">Sweet Morning Texts</span>
-                <span class="example-tag" onclick="fillPrompt('I want to send Diwali wishes to my customers')">Diwali wishes</span>
-                <span class="example-tag" onclick="fillPrompt('I need to send a birthday message to my friend')">Birthday message</span>
-                <span class="example-tag" onclick="fillPrompt('I want to invite people to my wedding')">Wedding invitation</span>
-                <span class="example-tag" onclick="fillPrompt('I need to send a thank you message to my clients')">Thank you note</span>
-                <span class="example-tag" onclick="fillPrompt('I want to send Christmas greetings')">Christmas wishes</span>
-                <span class="example-tag" onclick="fillPrompt('I need to send a business meeting reminder')">Meeting reminder</span>
-            </div>
-        </div>
-        
-        <!-- Bot Messaging Configuration Section -->
-        <div class="api-config-section" id="api-config-section">
-            <h3>🤖 Bot Messaging Configuration</h3>
-            <p class="subtitle">Configure automated messaging services to send messages as a bot</p>
-            
-            <!-- Toggle for enabling/disabling bot mode -->
-            <div class="toggle-container">
-                <label class="toggle-label">
-                    <input type="checkbox" id="enable-bot-mode">
-                    <span class="toggle-text">Enable Bot Mode</span>
-                </label>
-                <span class="toggle-help">Switch to automated messaging mode</span>
-            </div>
-            
-            <!-- Demo mode for testing without real API -->
-            <div class="demo-mode-container">
-                <label class="toggle-label">
-                    <input type="checkbox" id="enable-demo-mode">
-                    <span class="toggle-text">Demo Mode</span>
-                </label>
-                <span class="toggle-help">🧪 Test without real API credentials (simulates sending)</span>
-            </div>
-            
-            <!-- Dynamic provider-specific configuration (hidden until bot mode is enabled) -->
-            <div id="bot-config-options" class="bot-config-options" style="display: none;">
-                
-                <!-- Service provider selection -->
-                <div class="select-container">
-                    <label for="service-provider">Service Provider:</label>
-                    <select id="service-provider" class="service-select">
-                        <option value="">-- Select a Service --</option>
-                        <option value="twilio">Twilio</option>
-                        <option value="whatsapp-business">WhatsApp Business API</option>
-                        <option value="360dialog">360dialog</option>
-                        <option value="messagebird">MessageBird</option>
-                        <option value="vonage">Vonage (Nexmo)</option>
-                    </select>
-                </div>
-                
-                <!-- API credentials input fields for different providers -->
-                <div id="api-credentials" class="api-credentials">
-                    
-                    <!-- Twilio credentials -->
-                    <div id="twilio-credentials" class="provider-credentials" style="display: none;">
-                        <h4>Twilio Credentials</h4>
-                        <div class="credential-input">
-                            <label for="twilio-account-sid">Account SID:</label>
-                            <input type="text" id="twilio-account-sid" placeholder="Enter your Twilio Account SID">
-                        </div>
-                        <div class="credential-input">
-                            <label for="twilio-auth-token">Auth Token:</label>
-                            <input type="password" id="twilio-auth-token" placeholder="Enter your Twilio Auth Token">
-                        </div>
-                        <div class="credential-input">
-                            <label for="twilio-phone-number">Twilio WhatsApp Number:</label>
-                            <input type="text" id="twilio-phone-number" placeholder="e.g., +14155238886">
-                        </div>
-                    </div>
-                    
-                    <!-- WhatsApp Business API credentials -->
-                    <div id="whatsapp-business-credentials" class="provider-credentials" style="display: none;">
-                        <h4>WhatsApp Business API Credentials</h4>
-                        <div class="credential-input">
-                            <label for="wa-phone-number-id">Phone Number ID:</label>
-                            <input type="text" id="wa-phone-number-id" placeholder="Enter your Phone Number ID">
-                        </div>
-                        <div class="credential-input">
-                            <label for="wa-access-token">Access Token:</label>
-                            <input type="password" id="wa-access-token" placeholder="Enter your Access Token">
-                        </div>
-                        <div class="credential-input">
-                            <label for="wa-business-account-id">Business Account ID:</label>
-                            <input type="text" id="wa-business-account-id" placeholder="Enter your Business Account ID">
-                        </div>
-                    </div>
-                    
-                    <!-- 360dialog credentials -->
-                    <div id="360dialog-credentials" class="provider-credentials" style="display: none;">
-                        <h4>360dialog Credentials</h4>
-                        <div class="credential-input">
-                            <label for="360dialog-api-key">API Key:</label>
-                            <input type="password" id="360dialog-api-key" placeholder="Enter your 360dialog API Key">
-                        </div>
-                        <div class="credential-input">
-                            <label for="360dialog-phone-number">WhatsApp Number:</label>
-                            <input type="text" id="360dialog-phone-number" placeholder="e.g., +14155551234">
-                        </div>
-                    </div>
-                    
-                    <!-- Additional providers can be added here -->
-                </div>
-                
-                <!-- Bulk messaging options -->
-                <div class="bulk-messaging">
-                    <h4>Bulk Messaging</h4>
-                    <div class="bulk-option">
-                        <label for="recipient-list">Recipient Numbers (one per line):</label>
-                        <textarea id="recipient-list" placeholder="Enter WhatsApp numbers with country code, one per line:
-+91 9876543210
-+1 2345678900
-+44 7700900123"></textarea>
-                    </div>
-                    
-                    <!-- Scheduling messages -->
-                    <div class="scheduling-option">
-                        <label for="schedule-message">Schedule Message:</label>
-                        <div class="schedule-inputs">
-                            <input type="checkbox" id="enable-scheduling">
-                            <input type="datetime-local" id="schedule-datetime" disabled>
-                        </div>
-                    </div>
-                    
-                    <!-- Template selection -->
-                    <div class="template-option">
-                        <label for="message-template-type">Message Template Type:</label>
-                        <select id="message-template-type">
-                            <option value="custom">Custom Message</option>
-                            <option value="template">Approved Template</option>
-                        </select>
-                    </div>
-                    <div id="template-name-container" style="display: none;">
-                        <label for="template-name">Template Name:</label>
-                        <input type="text" id="template-name" placeholder="Enter approved template name">
-                    </div>
-                </div>
-                
-                <!-- Bot action buttons -->
-                <div class="bot-action-buttons">
-                    <button id="save-api-config-btn" class="config-btn">Save Configuration</button>
-                    <button id="test-connection-btn" class="config-btn">Test Connection</button>
-                    <button id="send-bot-message-btn" class="config-btn">Send via Bot</button>
-                </div>
-                
-                <!-- Debug panel for developers -->
-                <div class="debug-panel" id="debug-panel">
-                    <h4>🔍 Debug Information</h4>
-                    <div class="debug-toggle">
-                        <label>
-                            <input type="checkbox" id="enable-debug-mode">
-                            Show detailed debugging information
-                        </label>
-                    </div>
-                    <div id="debug-output" class="debug-output" style="display: none;">
-                        <pre id="debug-log"></pre>
-                        <button id="clear-debug-btn" class="debug-btn">Clear Log</button>
-                        <button id="download-debug-btn" class="debug-btn">Download Log</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer Note -->
-        <div class="footer">
-            <p>💡 Tip: Generated messages include placeholders like {name} that you can customize for each recipient</p>
-        </div>
-    </div>
-    
-    <!-- External script for functionality -->
-    <script src="script.js"></script>
+      <!-- Sender Name -->
+      <label for="sender-name">Sender Name:</label>
+      <input 
+        type="text" 
+        id="sender-name" 
+        placeholder="e.g., John" 
+        inputmode="text" />
+
+      <small class="number-help">
+        This replaces <code>{name}</code> and <code>{sender_name}</code> in your message.
+      </small>
+    </section>
+
+    <!-- ================= Output Section ================= -->
+    <section class="output-section" id="output-section" style="display: none;">
+      <h3>Generated Message</h3>
+
+      <!-- Auto-generated Message Display -->
+      <div id="message-display" class="message-display" role="region" aria-live="polite"></div>
+
+      <!-- Editable Message Box -->
+      <label for="editable-message">Edit your message:</label>
+      <textarea 
+        id="editable-message" 
+        rows="4" 
+        placeholder="Your generated message will appear here for editing..."></textarea>
+
+      <!-- WhatsApp Sending Section -->
+      <div class="whatsapp-section">
+        <label for="whatsapp-number">WhatsApp Number (with country code):</label>
+        <input 
+          type="tel" 
+          id="whatsapp-number" 
+          placeholder="e.g., +91 9876543210" 
+          aria-label="WhatsApp number" />
+        <small class="number-help">
+          Include country code (e.g., +91 for India, +1 for US)
+        </small>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="copy-btn" type="button">📋 Copy</button>
+        <button id="whatsapp-btn" type="button" disabled>💬 Send via WhatsApp</button>
+        <button id="regenerate-btn" type="button">🔄 Regenerate</button>
+      </div>
+    </section>
+
+    <!-- ================= Example Prompts ================= -->
+    <section class="examples-section">
+      <h3>Example Prompts</h3>
+      <div class="examples">
+        <span class="example-tag" onclick="fillPrompt('Good morning message for my best friend')">
+          Morning Text
+        </span>
+        <span class="example-tag" onclick="fillPrompt('I want to send Diwali wishes to customers')">
+          Diwali Wishes
+        </span>
+        <span class="example-tag" onclick="fillPrompt('Birthday message for a friend')">
+          Birthday Message
+        </span>
+        <span class="example-tag" onclick="fillPrompt('Wedding invitation to relatives')">
+          Wedding Invite
+        </span>
+        <span class="example-tag" onclick="fillPrompt('Thank you message for my clients')">
+          Thank You Note
+        </span>
+        <span class="example-tag" onclick="fillPrompt('Christmas greetings to employees')">
+          Christmas Wishes
+        </span>
+      </div>
+    </section>
+
+    <!-- ================= Footer ================= -->
+    <footer class="footer">
+      <p>💡 Tip: Messages can include placeholders like <code>{name}</code> and <code>{sender_name}</code>.</p>
+    </footer>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
