@@ -101,10 +101,11 @@ h1 {
 .input-section { margin-bottom: 30px; }
 
 .header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* pushes title left, button right */
+    padding: 1.2rem 2rem;
+    border-bottom: 2px solid var(--border);
 }
 
 .header-row h1 {
@@ -126,16 +127,21 @@ h1 {
 }
 
 .theme-toggle {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 180ms ease;
+    margin-left: auto; /* pushes it to far right */
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-glow);
+    color: var(--primary-start);
+    font-size: 1.2rem;
+    transition: all 0.25s ease-in-out;
 }
 
-.theme-toggle:hover { transform: translateY(-2px); }
+.theme-toggle:hover {
+    background: var(--primary-end);
+    color: var(--bg);
+}
 
 .prompt-row {
   display: flex;
@@ -384,3 +390,4 @@ input:focus, textarea:focus {
     text-align: center;
   }
 }
+
