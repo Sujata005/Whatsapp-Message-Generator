@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme
     try {
         const savedTheme = localStorage.getItem('appTheme') || 'light';
-        if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+        if (savedTheme === 'dark') document.body.classList.add('dark');
         updateThemeToggle();
     } catch (e) {
         console.warn('Unable to read theme preference:', e);
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Theme toggle handler
 if (themeToggle) {
     themeToggle.addEventListener('click', function() {
-        const isDark = document.documentElement.classList.toggle('dark');
+        const isDark = document.body.classList.toggle('dark');
         try { localStorage.setItem('appTheme', isDark ? 'dark' : 'light'); } catch(e) {}
         updateThemeToggle();
     });
@@ -439,7 +439,7 @@ if (themeToggle) {
 
 function updateThemeToggle() {
     if (!themeToggle) return;
-    const isDark = document.documentElement.classList.contains('dark');
+    const isDark = document.body.classList.contains('dark');
     themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
     themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
 }
@@ -1041,10 +1041,7 @@ function checkScheduledMessages() {
             remaining.push(msg);
         }
     });
-    document.getElementById("theme-toggle").addEventListener("click", function () {
-    document.body.classList.toggle("dark");
-    this.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
-});
+
 
     // Send due messages
     toSend.forEach(async (msg) => {
