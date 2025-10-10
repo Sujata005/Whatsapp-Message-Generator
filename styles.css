@@ -17,7 +17,8 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text);
-  background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+  /* use --bg variable so dark mode can set true black */
+  background: var(--bg);
   min-height: 100vh;
   padding: 20px;
   transition: background 300ms ease, color 300ms ease;
@@ -25,7 +26,7 @@ body {
 
 /* ------------------------------ Theme Variables ------------------------------ */
 :root {
-  --bg: #ffffff;
+  --bg: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
   --panel: #ffffff;
   --muted: #718096;
   --text: #1f2937;
@@ -45,8 +46,9 @@ body {
 }
 
 body.dark {
-  --bg: #0b1220;
-  --panel: #0f1724;
+  /* Use true black background for dark mode as requested */
+  --bg: #000000;
+  --panel: #071019; /* slightly lighter than pitch black for panels */
   --muted: #94a3b8;
   --text: #e6eef8;
   --primary-start: #4f46e5;
