@@ -1,3 +1,4 @@
+
 /* ===================================================================================
    📌 Message Generator Stylesheet
    Author: [Your Name]
@@ -5,537 +6,381 @@
    WhatsApp integration, bot configuration, and debugging UI.
    =================================================================================== */
 
-/* ------------------------------     Global Reset & Base Styles    ------------------------------ */
+/* ------------------------------ Global Reset & Base Styles ------------------------------ */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+  min-height: 100vh;
+  padding: 20px;
+  transition: background 300ms ease, color 300ms ease;
 }
 
-/* ------------------------------     Main Container     ------------------------------ */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    padding: 30px;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Color variables for light/dark */
+/* ------------------------------ Theme Variables ------------------------------ */
 :root {
-    --bg: #ffffff;
-    --panel: #ffffff;
-    --muted: #718096;
-    --text: #1f2937;
-    --primary-start: #667eea;
-    --primary-end: #764ba2;
-    --success: #10b981;
-    --danger: #ef4444;
-    --border: rgba(16,24,40,0.06);
-    --card-bg: rgba(255,255,255,0.02);
-    --input-border: rgba(226,232,240,0.9);
-    --placeholder: #9aa4bf;
-    --example-bg: #edf2f7;
-    --example-hover-bg: #667eea;
-    --footer-border: rgba(226,232,240,0.6);
-    --debug-bg: #111827;
-    --primary-glow: rgba(102,126,234,0.12);
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --muted: #718096;
+  --text: #1f2937;
+  --primary-start: #667eea;
+  --primary-end: #764ba2;
+  --success: #10b981;
+  --danger: #ef4444;
+  --border: rgba(16, 24, 40, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --input-border: rgba(226, 232, 240, 0.9);
+  --placeholder: #9aa4bf;
+  --example-bg: #edf2f7;
+  --example-hover-bg: #667eea;
+  --footer-border: rgba(226, 232, 240, 0.6);
+  --debug-bg: #111827;
+  --primary-glow: rgba(102, 126, 234, 0.12);
 }
 
-.dark {
-    --bg: #0b1220;
-    --panel: #0f1724;
-    --muted: #94a3b8;
-    --text: #e6eef8;
-    --primary-start: #4f46e5;
-    --primary-end: #06b6d4;
-    --success: #34d399;
-    --danger: #f87171;
-    --border: rgba(255,255,255,0.06);
-    --card-bg: rgba(255,255,255,0.02);
-    --input-border: rgba(255,255,255,0.06);
-    --placeholder: #6b7280;
-    --example-bg: rgba(255,255,255,0.02);
-    --example-hover-bg: #334155;
-    --footer-border: rgba(255,255,255,0.06);
-    --debug-bg: #0b1220;
-    --primary-glow: rgba(79,70,229,0.14);
+body.dark {
+  --bg: #0b1220;
+  --panel: #0f1724;
+  --muted: #94a3b8;
+  --text: #e6eef8;
+  --primary-start: #4f46e5;
+  --primary-end: #06b6d4;
+  --success: #34d399;
+  --danger: #f87171;
+  --border: rgba(255, 255, 255, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --input-border: rgba(255, 255, 255, 0.06);
+  --placeholder: #6b7280;
+  --example-bg: rgba(255, 255, 255, 0.02);
+  --example-hover-bg: #334155;
+  --footer-border: rgba(255, 255, 255, 0.06);
+  --debug-bg: #0b1220;
+  --primary-glow: rgba(79, 70, 229, 0.14);
 }
 
-/* Make the body gradient driven by theme colors */
-body { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); transition: background 300ms ease; }
+/* ------------------------------ Main Container ------------------------------ */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--panel);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  animation: fadeIn 0.5s ease-in-out;
+  transition: background 260ms ease, color 260ms ease, box-shadow 260ms ease;
+}
 
-.container { background: var(--panel); color: var(--text); transition: background 260ms ease, color 260ms ease, box-shadow 260ms ease; }
-
-/* Fade-in animation for smooth page load */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ------------------------------    Headings & Text    ------------------------------ */
+/* ------------------------------ Headings & Text ------------------------------ */
 h1 {
-    text-align: center;
-    color: var(--text);
-    font-size: 2.2rem;
-    margin-bottom: 6px;
-    transition: color 200ms ease;
+  text-align: center;
+  color: var(--text);
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+  transition: color 200ms ease;
 }
 
 .subtitle {
-    text-align: left;
-    color: var(--muted);
-    font-size: 0.98rem;
-    margin-bottom: 18px;
-    transition: color 200ms ease;
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin-bottom: 18px;
 }
 
-/* ------------------------------     Input Section (Prompt + Button)    ------------------------------ */
-.input-section {
-    margin-bottom: 30px;
-}
+/* ------------------------------ Header & Input Section ------------------------------ */
+.input-section { margin-bottom: 30px; }
 
-/* Header row to hold title and small actions */
 .header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 .header-row h1 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap; /* keeps "📝 Message Generator" on one line */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
-
-.header-row p{
-    margin-top : 4px;
-    font-size : 0.9rem;
+.header-row p {
+  margin-top: 4px;
+  font-size: 0.9rem;
 }
 
-.header-actions { display: flex; align-items: center; gap: 8px; }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 180ms ease;
 }
 
 .theme-toggle:hover { transform: translateY(-2px); }
 
-
 .prompt-row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.input-hint {
-    margin-top: 8px;
-    color: var(--muted);
-    font-size: 0.95em;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--muted);
-}
-
-/* Text input styles */
-input[type="text"] {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid var(--input-border);
-    border-radius: 8px;
-    font-size: 1em;
-    transition: border-color 0.22s ease, box-shadow 0.2s ease, background 0.2s ease;
-    margin-bottom: 15px;
-    background: transparent;
-    color: var(--text);
-}
-
-input[type="text"]:focus {
-    outline: none;
-    border-color: var(--primary-start);
-    box-shadow: 0 0 0 6px var(--primary-glow);
-}
-
-/* Personalization section */
-.personalize-section {
-  margin: 20px 0;
-  padding: 16px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.personalize-section h3 {
-  color: var(--text);
-  margin-bottom: 10px;
-}
-
-.personalize-row {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
-.personalize-row input[type="text"] {
-  flex: 1 1 auto;
-  margin-bottom: 0;
-}
-
-#apply-placeholders {
-  flex: 0 0 auto;
-  padding: 10px 16px;
-}
-
-/* Make the input in the prompt-row take remaining space and keep button fixed */
 .prompt-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(16,24,40,0.04);
-    transition: transform 0.18s ease, box-shadow 0.18s ease, background 200ms ease, border-color 200ms ease;
-    animation: popIn 360ms ease both;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+  animation: popIn 360ms ease both;
+  transition: all 0.2s ease;
 }
 
-.prompt-card:focus-within { transform: translateY(-6px); box-shadow: 0 14px 36px var(--primary-glow); }
+.prompt-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px var(--primary-glow);
+}
 
 .prompt-card input[type="text"] {
-    flex: 1 1 auto;
-    margin-bottom: 0;
-    background: transparent;
-    border: none;
-    padding: 8px 10px;
-    color: var(--text);
-    font-size: 1rem;
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  background: transparent;
+  border: none;
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 1rem;
 }
 
 .prompt-card input::placeholder { color: var(--placeholder); }
 
 .prompt-card button {
-    flex: 0 0 auto;
-    padding: 10px 16px;
-    border-radius: 10px;
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  border-radius: 10px;
 }
 
-/* ------------------------------     Buttons     ------------------------------ */
+/* ------------------------------ Buttons ------------------------------ */
 button {
-    background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 160ms ease;
+  background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 12px 30px rgba(16,24,40,0.14);
-    filter: saturate(1.05);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.14);
+  filter: saturate(1.05);
 }
 
-/* small pop-in for components */
-@keyframes popIn {
-    from { opacity: 0; transform: translateY(8px) scale(0.995); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-/* Main generate button */
-#generate-btn {
-    width: auto;
-    font-size: 1em;
-}
+button:active { transform: translateY(0); }
+button:focus { outline: 3px solid rgba(102, 126, 234, 0.18); outline-offset: 2px; }
 
 #generate-btn[disabled],
 .action-buttons button[disabled],
 .config-btn[disabled] {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* ------------------------------     Output Section (Generated Message)     ------------------------------ */
-.output-section {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 30px;
-    border: 1px solid var(--border);
-    animation: revealUp 300ms ease both;
-}
-
-.output-section h3 {
-    color: var(--text);
-    margin-bottom: 15px;
-}
-
-/* Display generated text */
-.message-display {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-family: 'Courier New', monospace;
-    line-height: 1.6;
-    color: var(--text);
-    white-space: pre-wrap;
-}
-
-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid var(--input-border);
-    border-radius: 8px;
-    font-size: 1em;
-    font-family: inherit;
-    resize: vertical;
-    min-height: 120px;
-    margin-bottom: 15px;
-    background: transparent;
-    color: var(--text);
-    transition: border-color 0.22s ease, box-shadow 0.2s ease;
-}
-
-textarea: focus {
-    outline: none;
-    border-color: var(--primary-start);
-    box-shadow: 0 0 0 6px var(--primary-glow);
-}
-
-
-/* ------------------------------     WhatsApp Section     ------------------------------ */
-.whatsapp-section {
-    margin: 20px 0;
-    padding: 15px;
-    background: linear-gradient(180deg, rgba(16,185,129,0.04), rgba(16,185,129,0.02));
-    border: 1px solid rgba(16,185,129,0.12);
-    border-radius: 8px;
-}
-
-.whatsapp-section label {
-    color: #166534;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-input[type="tel"] {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid var(--input-border);
-    border-radius: 8px;
-    margin-bottom: 5px;
-    background: transparent;
-    color: var(--text);
-}
-
-input[type="tel"]:focus {
-    outline: none;
-    border-color: #25D366;
-    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
-}
-
-.number-help {
-    color: var(--muted);
-    font-size: 0.85em;
-    font-style: italic;
-    display: block;
-}
-
-/* ------------------------------     Action Buttons (Copy, WhatsApp, Regenerate)    ------------------------------ */
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.action-buttons button {
-    flex: 1;
-    min-width: 150px;
-}
-
-/* Specific button colors */
-/* Accent buttons use the same palette but with subtle tonal shifts to work in dark mode */
+/* Accent buttons */
 #copy-btn { background: linear-gradient(135deg, #34d399 0%, #059669 100%); }
 #regenerate-btn { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
 #whatsapp-btn { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
 
 #whatsapp-btn:disabled {
-    background: #9ca3af;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-/* ------------------------------    Example Prompts Section    ------------------------------ */
+/* ------------------------------ Input Fields ------------------------------ */
+input[type="text"], input[type="tel"], textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 1em;
+  background: transparent;
+  color: var(--text);
+  transition: all 0.22s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-start);
+  box-shadow: 0 0 0 6px var(--primary-glow);
+}
+
+/* ------------------------------ Output Section ------------------------------ */
+.output-section {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border);
+  animation: revealUp 300ms ease both;
+}
+
+.output-section h3 { color: var(--text); margin-bottom: 15px; }
+
+.message-display {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-family: 'Courier New', monospace;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+/* ------------------------------ WhatsApp Section ------------------------------ */
+.whatsapp-section {
+  margin: 20px 0;
+  padding: 15px;
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.04), rgba(16, 185, 129, 0.02));
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  border-radius: 8px;
+}
+
+.whatsapp-section label {
+  color: #166534;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.number-help {
+  color: var(--muted);
+  font-size: 0.85em;
+  font-style: italic;
+  display: block;
+}
+
+/* ------------------------------ Example Prompts ------------------------------ */
 .examples-section h3 {
-    color: var(--text);
-    margin-bottom: 15px;
+  color: var(--text);
+  margin-bottom: 15px;
 }
 
 .examples {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .example-tag {
-    background: var(--example-bg);
-    color: var(--text);
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: transform 220ms ease, background 220ms ease, color 220ms ease;
-    box-shadow: 0 4px 12px rgba(16,24,40,0.04);
+  background: var(--example-bg);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 220ms ease;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.04);
+  animation: float 6s ease-in-out infinite;
 }
 
 .example-tag:hover {
-    background: var(--example-hover-bg);
-    color: white;
-    transform: translateY(-4px) scale(1.02);
+  background: var(--example-hover-bg);
+  color: white;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.12);
 }
-
-.example-tag { animation: float 6s ease-in-out infinite; }
 
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-    100% { transform: translateY(0); }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
 }
 
-/* ------------------------------    Footer Section    ------------------------------ */
+/* ------------------------------ Footer ------------------------------ */
 .footer {
-    text-align: center;
-    color: var(--muted);
-    font-style: italic;
-    padding-top: 20px;
-    border-top: 1px solid var(--footer-border);
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  padding-top: 20px;
+  border-top: 1px solid var(--footer-border);
 }
 
-/* ------------------------------     API Configuration Section (Bot Mode, Providers, Debug)    ------------------------------ */
-.api-config-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-}
-
-.bot-config-options {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-/* Provider credentials, bulk messaging, etc. (Twilio, WhatsApp Business API, 360dialog, etc.) */
-.provider-credentials {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 15px;
-}
-
-/* ------------------------------     Debug Panel    ------------------------------ */
+/* ------------------------------ Debug Panel ------------------------------ */
 .debug-panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 .debug-output {
-    margin-top: 15px;
-    background: var(--debug-bg);
-    border-radius: 6px;
-    padding: 15px;
-    max-height: 300px;
-    overflow-y: auto;
+  margin-top: 15px;
+  background: var(--debug-bg);
+  border-radius: 6px;
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
-/* ------------------------------    Responsive Design     ------------------------------ */
-@media (max-width: 768px) {
-    .container { padding: 20px; margin: 10px; }
-    .action-buttons { flex-direction: column; }
-    .config-btn { min-width: auto; }
-}
-  .header-row {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
-  .header-row h1 {
-      position: static;
-      transform: none;
-      text-align: center;
-  }
-
-/* Accessibility focus styles */
-button:focus, input:focus, textarea:focus, select:focus {
-    outline: 3px solid rgba(102,126,234,0.18);
-    outline-offset: 2px;
+/* ------------------------------ Animations ------------------------------ */
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.995); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Reveal animation for output */
 @keyframes revealUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ------------------------------    Extra Effects ------------------------------ */
 .copied {
-    background: #48bb78 !important;
-    animation: pulse 0.6s ease-in-out;
+  background: #48bb78 !important;
+  animation: pulse 0.6s ease-in-out;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-
-.example-tag:hover {
-    box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+/* ------------------------------ Responsive Design ------------------------------ */
+@media (max-width: 768px) {
+  .container { padding: 20px; margin: 10px; }
+  .action-buttons { flex-direction: column; }
+  .config-btn { min-width: auto; }
+  .header-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-row h1 {
+    position: static;
+    transform: none;
+    text-align: center;
+  }
 }
-
-input[type="text"], input[type="tel"], textarea {
-    transition: all 0.2s ease-in-out;
-}
-
-
