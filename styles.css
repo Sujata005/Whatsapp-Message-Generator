@@ -68,7 +68,7 @@ body.dark {
 
 /* ------------------------------ Main Container ------------------------------ */
 .container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
   background: var(--panel);
   border-radius: 15px;
@@ -93,6 +93,7 @@ h1 {
 }
 
 .subtitle {
+  margin-bottom: 20px !important;
   text-align: left;
   color: var(--muted);
   font-size: 0.98rem;
@@ -105,8 +106,11 @@ h1 {
 .header-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content:space-between;
   position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-row h1 {
@@ -114,6 +118,9 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
+  position: static;
+    transform: none;
+    text-align: center;
 }
 
 .header-row p {
@@ -375,14 +382,4 @@ input:focus, textarea:focus {
   .container { padding: 20px; margin: 10px; }
   .action-buttons { flex-direction: column; }
   .config-btn { min-width: auto; }
-  .header-row {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .header-row h1 {
-    position: static;
-    transform: none;
-    text-align: center;
-  }
 }
