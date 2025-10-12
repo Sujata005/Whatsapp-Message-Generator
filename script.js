@@ -63,6 +63,84 @@ const messageTemplates = {
         "Hello {name},\n\nI wanted to reach out and apologize for {reason}. This was not up to our usual standards, and I'm sorry for any frustration this may have caused.\n\nWe value your relationship and are taking steps to prevent this in the future.\n\nBest regards,\n{sender_name}"
     ],
     
+    // Congratulations Messages
+    congratulations: [
+        "Dear {name},\n\nCongratulations on your {achievement}! This is truly well-deserved and we're so proud of your accomplishment.\n\nYour hard work and dedication have paid off. Wishing you continued success in all your future endeavors!\n\nBest wishes,\n{sender_name}",
+        "Hello {name},\n\n🎉 Congratulations on your {achievement}! This is fantastic news and we couldn't be happier for you.\n\nYour success is an inspiration to us all. Keep up the amazing work!\n\nWarm congratulations,\n{sender_name}"
+    ],
+    
+    // Get Well Soon Messages
+    getwell: [
+        "Dear {name},\n\nI hope this message finds you on the road to recovery. Take all the time you need to rest and heal.\n\nWe're thinking of you and sending positive vibes your way. Looking forward to seeing you back to your wonderful self soon!\n\nGet well soon,\n{sender_name}",
+        "Hello {name},\n\nSending you healing thoughts and warm wishes for a speedy recovery. Take care of yourself and don't rush the healing process.\n\nWe miss you and can't wait to have you back with us. Rest well!\n\nWith love and best wishes,\n{sender_name}"
+    ],
+    
+    // Interview Invitation Messages
+    interview: [
+        "Dear {name},\n\nThank you for your interest in the {position} position. We were impressed by your application and would like to invite you for an interview.\n\nDate: {date}\nTime: {time}\nLocation: {location}\n\nPlease confirm your availability. We look forward to meeting you!\n\nBest regards,\n{sender_name}",
+        "Hello {name},\n\nWe're excited to invite you for an interview for the {position} role. Your qualifications align perfectly with what we're looking for.\n\nInterview Details:\n📅 Date: {date}\n🕐 Time: {time}\n📍 Location: {location}\n\nPlease let us know if you need to reschedule. Looking forward to our conversation!\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Product Launch Messages
+    productlaunch: [
+        "Dear {name},\n\nWe're thrilled to announce the launch of our new {product_name}! This innovative solution is designed to {benefit}.\n\nKey Features:\n• {feature1}\n• {feature2}\n• {feature3}\n\nGet early access with a special launch discount. Visit {website} to learn more!\n\nExcited to share this with you,\n{sender_name}",
+        "Hello {name},\n\n🚀 Big news! We're launching {product_name} - a game-changing solution for {target_audience}.\n\nWhat makes it special:\n✨ {feature1}\n✨ {feature2}\n✨ {feature3}\n\nBe among the first to experience it. Limited time offer available!\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Follow Up Messages
+    followup: [
+        "Dear {name},\n\nI hope this message finds you well. I wanted to follow up on our recent {meeting/conversation} regarding {topic}.\n\nAs discussed, I'm attaching the {document/information} you requested. Please let me know if you need any clarification or have additional questions.\n\nLooking forward to hearing from you soon.\n\nBest regards,\n{sender_name}",
+        "Hello {name},\n\nFollowing up on our {meeting/conversation} about {topic}. I wanted to share the next steps and ensure we're aligned.\n\nNext Steps:\n1. {step1}\n2. {step2}\n3. {step3}\n\nPlease let me know your thoughts and if you need any support.\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Welcome Messages
+    welcome: [
+        "Dear {name},\n\nWelcome to the {company/team}! We're thrilled to have you join us and excited about the value you'll bring to our team.\n\nYour first day is {date}. Please arrive at {time} and we'll have everything ready for you.\n\nIf you have any questions before then, don't hesitate to reach out. Looking forward to working with you!\n\nWarm welcome,\n{sender_name}",
+        "Hello {name},\n\n🎉 Welcome aboard! We're so excited to have you as part of the {company/team} family.\n\nYour journey with us starts on {date}. We've prepared a comprehensive onboarding experience to help you settle in smoothly.\n\nCan't wait to see what amazing things we'll accomplish together!\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Farewell Messages
+    farewell: [
+        "Dear {name},\n\nAs you embark on this new chapter, we want to express our heartfelt gratitude for your contributions to our team.\n\nYour dedication, creativity, and positive spirit will be greatly missed. We wish you all the best in your future endeavors.\n\nPlease stay in touch - you'll always be part of our family!\n\nFarewell and best wishes,\n{sender_name}",
+        "Hello {name},\n\nIt's bittersweet to say goodbye to such an amazing colleague and friend. Your impact on our team has been invaluable.\n\nWe're excited for your new adventure and know you'll achieve great things. Don't be a stranger - our door is always open!\n\nWishing you success and happiness,\n{sender_name}"
+    ],
+    
+    // Customer Service Messages
+    customerservice: [
+        "Dear {name},\n\nThank you for reaching out to us regarding {issue}. We sincerely apologize for any inconvenience this may have caused.\n\nWe've reviewed your case and here's what we're doing to resolve it:\n• {action1}\n• {action2}\n\nWe'll keep you updated on the progress. If you have any questions, please don't hesitate to contact us.\n\nBest regards,\n{sender_name}",
+        "Hello {name},\n\nWe appreciate you bringing {issue} to our attention. Your satisfaction is our top priority.\n\nResolution Steps:\n✅ {step1}\n✅ {step2}\n⏳ {step3} (in progress)\n\nWe're committed to resolving this quickly. Thank you for your patience.\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Project Update Messages
+    projectupdate: [
+        "Dear Team,\n\nHere's the latest update on {project_name}:\n\nProgress Summary:\n• {milestone1} - ✅ Completed\n• {milestone2} - 🔄 In Progress\n• {milestone3} - 📋 Upcoming\n\nNext Steps:\n1. {next_step1}\n2. {next_step2}\n\nTimeline: {timeline}\n\nGreat work everyone! Let's keep the momentum going.\n\nBest regards,\n{sender_name}",
+        "Hello Team,\n\n📊 Project Update: {project_name}\n\nCurrent Status: {status}\nProgress: {percentage}% complete\n\nKey Achievements:\n🎯 {achievement1}\n🎯 {achievement2}\n\nUpcoming Milestones:\n📅 {milestone1} - {date1}\n📅 {milestone2} - {date2}\n\nKeep up the excellent work!\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Sales Pitch Messages
+    salespitch: [
+        "Dear {name},\n\nI hope this message finds you well. I wanted to share an exciting opportunity that could significantly benefit {company_name}.\n\nOur {product/service} has helped companies like yours achieve:\n• {benefit1}\n• {benefit2}\n• {benefit3}\n\nI'd love to schedule a brief 15-minute call to discuss how this could work for you. Would {date} at {time} work?\n\nLooking forward to our conversation,\n{sender_name}",
+        "Hello {name},\n\nI came across {company_name} and was impressed by your work in {industry}. I believe our {product/service} could help you {specific_benefit}.\n\nQuick Results:\n🚀 {result1}\n🚀 {result2}\n🚀 {result3}\n\nWorth a 10-minute conversation? I'm confident you'll find value in what we offer.\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Feedback Request Messages
+    feedbackrequest: [
+        "Dear {name},\n\nWe hope you're enjoying your experience with {product/service}. Your feedback is incredibly valuable to us and helps us improve.\n\nCould you spare 2 minutes to share your thoughts? Your honest feedback helps us serve you better.\n\n[Feedback Link: {link}]\n\nThank you for being a valued customer!\n\nBest regards,\n{sender_name}",
+        "Hello {name},\n\nHow was your recent experience with {product/service}? We'd love to hear from you!\n\nYour feedback helps us:\n✨ Improve our services\n✨ Better serve customers like you\n✨ Continue innovating\n\nQuick 2-minute survey: {link}\n\nThank you for your time!\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Order Confirmation Messages
+    orderconfirmation: [
+        "Dear {name},\n\nThank you for your order! We're excited to prepare your items.\n\nOrder Details:\n📦 Order #: {order_number}\n📅 Order Date: {date}\n💰 Total: {amount}\n\nItems Ordered:\n• {item1}\n• {item2}\n\nExpected Delivery: {delivery_date}\n\nWe'll send you tracking information once your order ships. Thank you for choosing us!\n\nBest regards,\n{sender_name}",
+        "Hello {name},\n\n🎉 Your order has been confirmed!\n\nOrder Summary:\n🛍️ {item_count} items\n💳 Payment: {payment_method}\n📧 Confirmation: {order_number}\n\nWhat's Next:\n1. We'll prepare your order\n2. You'll receive tracking info\n3. Delivery by {delivery_date}\n\nThank you for your business!\n\nBest regards,\n{sender_name}"
+    ],
+    
+    // Delivery Notification Messages
+    deliverynotification: [
+        "Dear {name},\n\nGreat news! Your order #{order_number} is on its way to you.\n\nTracking Information:\n📦 Tracking #: {tracking_number}\n🚚 Carrier: {carrier}\n📅 Expected Delivery: {delivery_date}\n\nTrack your package: {tracking_link}\n\nWe hope you love your purchase! If you have any questions, just reply to this message.\n\nBest regards,\n{sender_name}",
+        "Hello {name},\n\n🚚 Your package is out for delivery!\n\nDelivery Details:\n📦 Order: #{order_number}\n🏠 Address: {address}\n⏰ Window: {time_window}\n\nTrack: {tracking_link}\n\nYour order should arrive today. We hope you enjoy your purchase!\n\nBest regards,\n{sender_name}"
+    ],
+    
     // Generic/Default
     generic: [
         "Hello {name},\n\nI hope this message finds you well. {custom_message}\n\nPlease let me know if you need any additional information.\n\nBest regards,\n{sender_name}",
@@ -79,10 +157,23 @@ const keywordMapping = {
     birthday: ['birthday', 'bday', 'born day'],
     anniversary: ['anniversary', 'wedding anniversary'],
     thankyou: ['thank you', 'thanks', 'grateful', 'appreciate'],
-    meeting: ['meeting', 'appointment', 'conference', 'call', 'discussion'],
+    meeting: ['meeting', 'appointment', 'conference', 'call', 'discussion', 'reminder'],
     invitation: ['invite', 'invitation', 'event', 'party', 'gathering'],
     wedding: ['wedding', 'marriage', 'wed', 'ceremony', 'nuptials'],
-    apology: ['sorry', 'apology', 'apologize', 'mistake', 'error']
+    apology: ['sorry', 'apology', 'apologize', 'mistake', 'error', 'late'],
+    congratulations: ['congratulations', 'congrats', 'promotion', 'achievement', 'success'],
+    getwell: ['get well', 'recovery', 'healing', 'sick', 'illness', 'health'],
+    interview: ['interview', 'job interview', 'hiring', 'candidate', 'position'],
+    productlaunch: ['product launch', 'launch', 'new product', 'announcement', 'release'],
+    followup: ['follow up', 'follow-up', 'followup', 'after meeting', 'next steps'],
+    welcome: ['welcome', 'new employee', 'onboarding', 'joining', 'first day'],
+    farewell: ['farewell', 'goodbye', 'leaving', 'departure', 'last day'],
+    customerservice: ['customer service', 'support', 'complaint', 'issue', 'help'],
+    projectupdate: ['project update', 'progress', 'milestone', 'status', 'team update'],
+    salespitch: ['sales pitch', 'sales', 'pitch', 'proposal', 'business opportunity'],
+    feedbackrequest: ['feedback', 'review', 'survey', 'rating', 'opinion'],
+    orderconfirmation: ['order confirmation', 'order', 'purchase', 'payment', 'checkout'],
+    deliverynotification: ['delivery', 'shipping', 'tracking', 'package', 'shipment']
 };
 
 // DOM Elements
@@ -112,7 +203,7 @@ function applyPlaceholders(template, data) {
     return (v !== undefined && v !== null && String(v).trim() !== '') ? String(v) : `{${key}}`;
   });
 }
-// Bot messaging DOM elements
+// Bot messaging DOM elements (optional - may not exist in HTML)
 const enableBotMode = document.getElementById('enable-bot-mode');
 const botConfigOptions = document.getElementById('bot-config-options');
 const serviceProvider = document.getElementById('service-provider');
@@ -126,7 +217,7 @@ const messageTemplateType = document.getElementById('message-template-type');
 const templateNameContainer = document.getElementById('template-name-container');
 const templateName = document.getElementById('template-name');
 
-// Demo mode and debug elements
+// Demo mode and debug elements (optional - may not exist in HTML)
 const enableDemoMode = document.getElementById('enable-demo-mode');
 const enableDebugMode = document.getElementById('enable-debug-mode');
 const debugOutput = document.getElementById('debug-output');
@@ -140,20 +231,20 @@ copyBtn.addEventListener('click', copyMessage);
 regenerateBtn.addEventListener('click', generateMessage);
 whatsappBtn.addEventListener('click', sendToWhatsApp);
 
-// Bot messaging event listeners
-enableBotMode.addEventListener('change', toggleBotMode);
-serviceProvider.addEventListener('change', showProviderCredentials);
-saveApiConfigBtn.addEventListener('click', saveApiConfiguration);
-testConnectionBtn.addEventListener('click', testConnection);
-sendBotMessageBtn.addEventListener('click', sendBotMessage);
-enableScheduling.addEventListener('change', toggleScheduling);
-messageTemplateType.addEventListener('change', toggleTemplateOptions);
+// Bot messaging event listeners (only add if elements exist)
+if (enableBotMode) enableBotMode.addEventListener('change', toggleBotMode);
+if (serviceProvider) serviceProvider.addEventListener('change', showProviderCredentials);
+if (saveApiConfigBtn) saveApiConfigBtn.addEventListener('click', saveApiConfiguration);
+if (testConnectionBtn) testConnectionBtn.addEventListener('click', testConnection);
+if (sendBotMessageBtn) sendBotMessageBtn.addEventListener('click', sendBotMessage);
+if (enableScheduling) enableScheduling.addEventListener('change', toggleScheduling);
+if (messageTemplateType) messageTemplateType.addEventListener('change', toggleTemplateOptions);
 
-// Demo mode and debug event listeners
-enableDemoMode.addEventListener('change', toggleDemoMode);
-enableDebugMode.addEventListener('change', toggleDebugMode);
-clearDebugBtn.addEventListener('click', clearDebugLog);
-downloadDebugBtn.addEventListener('click', downloadDebugLog);
+// Demo mode and debug event listeners (only add if elements exist)
+if (enableDemoMode) enableDemoMode.addEventListener('change', toggleDemoMode);
+if (enableDebugMode) enableDebugMode.addEventListener('change', toggleDebugMode);
+if (clearDebugBtn) clearDebugBtn.addEventListener('click', clearDebugLog);
+if (downloadDebugBtn) downloadDebugBtn.addEventListener('click', downloadDebugLog);
 
 // Allow Enter key to generate message (use keydown for better compatibility)
 promptInput.addEventListener('keydown', function(e) {
@@ -483,24 +574,26 @@ function logDebug(message, type = 'info', data = null) {
 
 // Toggle demo mode
 function toggleDemoMode() {
+    if (!enableDemoMode) return;
     demoModeEnabled = enableDemoMode.checked;
     if (demoModeEnabled) {
-        sendBotMessageBtn.classList.add('demo-mode-active');
+        if (sendBotMessageBtn) sendBotMessageBtn.classList.add('demo-mode-active');
         logDebug('Demo mode enabled - messages will be simulated', 'warning');
     } else {
-        sendBotMessageBtn.classList.remove('demo-mode-active');
+        if (sendBotMessageBtn) sendBotMessageBtn.classList.remove('demo-mode-active');
         logDebug('Demo mode disabled - real API calls will be made', 'info');
     }
 }
 
 // Toggle debug mode
 function toggleDebugMode() {
+    if (!enableDebugMode) return;
     debugEnabled = enableDebugMode.checked;
     if (debugEnabled) {
-        debugOutput.style.display = 'block';
+        if (debugOutput) debugOutput.style.display = 'block';
         logDebug('Debug mode enabled', 'success');
     } else {
-        debugOutput.style.display = 'none';
+        if (debugOutput) debugOutput.style.display = 'none';
     }
 }
 
@@ -531,6 +624,7 @@ function downloadDebugLog() {
 
 // Toggle bot mode
 function toggleBotMode() {
+    if (!enableBotMode || !botConfigOptions) return;
     if (enableBotMode.checked) {
         botConfigOptions.style.display = 'block';
     } else {
@@ -540,6 +634,7 @@ function toggleBotMode() {
 
 // Show provider-specific credentials
 function showProviderCredentials() {
+    if (!serviceProvider) return;
     // Hide all provider credentials
     const allCredentials = document.querySelectorAll('.provider-credentials');
     allCredentials.forEach(cred => cred.style.display = 'none');
@@ -555,6 +650,7 @@ function showProviderCredentials() {
 
 // Save API configuration
 function saveApiConfiguration() {
+    if (!serviceProvider) return;
     const provider = serviceProvider.value;
     
     if (!provider) {
@@ -568,22 +664,22 @@ function saveApiConfiguration() {
     switch (provider) {
         case 'twilio':
             credentials = {
-                accountSid: document.getElementById('twilio-account-sid').value,
-                authToken: document.getElementById('twilio-auth-token').value,
-                phoneNumber: document.getElementById('twilio-phone-number').value
+                accountSid: document.getElementById('twilio-account-sid')?.value || '',
+                authToken: document.getElementById('twilio-auth-token')?.value || '',
+                phoneNumber: document.getElementById('twilio-phone-number')?.value || ''
             };
             break;
         case 'whatsapp-business':
             credentials = {
-                phoneNumberId: document.getElementById('wa-phone-number-id').value,
-                accessToken: document.getElementById('wa-access-token').value,
-                businessAccountId: document.getElementById('wa-business-account-id').value
+                phoneNumberId: document.getElementById('wa-phone-number-id')?.value || '',
+                accessToken: document.getElementById('wa-access-token')?.value || '',
+                businessAccountId: document.getElementById('wa-business-account-id')?.value || ''
             };
             break;
         case '360dialog':
             credentials = {
-                apiKey: document.getElementById('360dialog-api-key').value,
-                phoneNumber: document.getElementById('360dialog-phone-number').value
+                apiKey: document.getElementById('360dialog-api-key')?.value || '',
+                phoneNumber: document.getElementById('360dialog-phone-number')?.value || ''
             };
             break;
         default:
@@ -610,6 +706,7 @@ function saveApiConfiguration() {
     localStorage.setItem('messageBotConfig', JSON.stringify(botConfig));
     
     // Visual feedback
+    if (saveApiConfigBtn) {
     const originalText = saveApiConfigBtn.textContent;
     saveApiConfigBtn.textContent = '✅ Saved!';
     saveApiConfigBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
@@ -618,6 +715,7 @@ function saveApiConfiguration() {
         saveApiConfigBtn.textContent = originalText;
         saveApiConfigBtn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)';
     }, 2000);
+    }
 }
 
 // Test connection to API
@@ -627,6 +725,7 @@ function testConnection() {
         return;
     }
     
+    if (!testConnectionBtn) return;
     const originalText = testConnectionBtn.textContent;
     testConnectionBtn.textContent = '🔄 Testing...';
     testConnectionBtn.disabled = true;
@@ -682,19 +781,21 @@ async function sendBotMessage() {
         const error = 'Please enter at least one valid recipient number with country code (e.g., +91 9876543210)!';
         logDebug(error, 'error');
         alert(error);
-        recipientList.focus();
+        if (recipientList) recipientList.focus();
         return;
     }
     
     // Validate all recipients
     const invalidRecipients = [];
-    const recipientLines = recipientList.value.trim().split('\n');
-    recipientLines.forEach((line, index) => {
-        const trimmed = line.trim();
-        if (trimmed && !validatePhoneNumber(trimmed)) {
-            invalidRecipients.push(`Line ${index + 1}: "${trimmed}"`);
-        }
-    });
+    if (recipientList) {
+        const recipientLines = recipientList.value.trim().split('\n');
+        recipientLines.forEach((line, index) => {
+            const trimmed = line.trim();
+            if (trimmed && !validatePhoneNumber(trimmed)) {
+                invalidRecipients.push(`Line ${index + 1}: "${trimmed}"`);
+            }
+        });
+    }
     
     if (invalidRecipients.length > 0) {
         const error = `Invalid phone numbers found:\n${invalidRecipients.join('\n')}\n\nPlease use format: +[country code] [number]`;
@@ -704,7 +805,7 @@ async function sendBotMessage() {
     }
     
     // Check if scheduling is enabled
-    const isScheduled = enableScheduling.checked && scheduleDateTime.value;
+    const isScheduled = enableScheduling?.checked && scheduleDateTime?.value;
     
     if (isScheduled) {
         const scheduleTime = new Date(scheduleDateTime.value);
@@ -729,6 +830,7 @@ async function sendBotMessage() {
 
 // Get list of recipients from textarea
 function getRecipientList() {
+    if (!recipientList) return [];
     const text = recipientList.value.trim();
     logDebug(`Getting recipient list from textarea`, 'info', { rawText: text });
     
@@ -760,6 +862,7 @@ function getRecipientList() {
 
 // Send messages immediately
 async function sendImmediateMessages(message, recipients) {
+    if (!sendBotMessageBtn) return;
     const originalText = sendBotMessageBtn.textContent;
     sendBotMessageBtn.textContent = '📤 Sending...';
     sendBotMessageBtn.disabled = true;
@@ -777,7 +880,7 @@ async function sendImmediateMessages(message, recipients) {
     for (let i = 0; i < recipients.length; i++) {
         const recipient = recipients[i];
         const progress = ((i + 1) / recipients.length) * 100;
-        progressBar.style.width = `${progress}%`;
+        if (progressBar) progressBar.style.width = `${progress}%`;
         
         try {
             await sendSingleMessage(message, recipient);
@@ -986,11 +1089,13 @@ function scheduleMessage(message, recipients, scheduleTime) {
 
 // Toggle scheduling options
 function toggleScheduling() {
+    if (!scheduleDateTime || !enableScheduling) return;
     scheduleDateTime.disabled = !enableScheduling.checked;
 }
 
 // Toggle template options
 function toggleTemplateOptions() {
+    if (!messageTemplateType || !templateNameContainer) return;
     if (messageTemplateType.value === 'template') {
         templateNameContainer.style.display = 'block';
     } else {
@@ -1006,9 +1111,9 @@ function loadSavedConfiguration() {
             botConfig = JSON.parse(savedConfig);
             if (botConfig.isConfigured) {
                 // Restore UI state
-                enableBotMode.checked = true;
+                if (enableBotMode) enableBotMode.checked = true;
                 toggleBotMode();
-                serviceProvider.value = botConfig.provider;
+                if (serviceProvider) serviceProvider.value = botConfig.provider;
                 showProviderCredentials();
                 
                 // Restore credentials (but not sensitive data for security)
@@ -1041,7 +1146,6 @@ function checkScheduledMessages() {
             remaining.push(msg);
         }
     });
-
 
     // Send due messages
     toSend.forEach(async (msg) => {
